@@ -7,6 +7,8 @@ use App\Models\Transaction;
 use App\Models\Payout;
 use App\Enums\PaymentStatus;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Log;
 
 class PaymentService
 {
@@ -27,12 +29,13 @@ class PaymentService
         
         // Create transaction record
         $transaction = Transaction::create([
+            'user_id' => $order->user_id,
             'order_id' => $order->id,
-            'transaction_id' => $this->generateTransactionId(),
             'amount' => $order->total,
+            'currency' => 'SAR',
             'status' => 'pending',
-            'method' => $method,
-            'details' => json_encode($details),
+            'gateway' => $this->mapMethodToGateway($method),
+            'metadata' => $details,
         ]);
         
         // Process based on payment method
@@ -51,6 +54,18 @@ class PaymentService
     }
 
     /**
+     * Map payment method to gateway name.
+     */
+    private function mapMethodToGateway(string $method): string
+    {
+        return match($method) {
+            'tap_sa' => 'tap',
+            'manual', 'bank_transfer' => 'manual',
+            default => 'manual',
+        };
+    }
+
+    /**
      * Process Tap.sa payment
      *
      * @param Transaction $transaction
@@ -60,30 +75,61 @@ class PaymentService
      */
     private function processTapSa(Transaction $transaction, Order $order, array $details): Transaction
     {
-        // This would integrate with Tap.sa SDK
-        // For now, mock successful payment
-        
-        // In production, you would:
-        // 1. Call Tap.sa API with transaction details
-        // 2. Handle callback verification
-        // 3. Update transaction status based on response
-        
-        $transaction->update([
-            'status' => 'completed',
-            'completed_at' => now(),
-        ]);
+        $secretKey = config('services.tap.secret_key');
 
-        // Mark order as paid
-        $order->update([
-            'payment_status' => PaymentStatus::Paid,
-            'payment_method' => 'tap_sa',
-            'paid_at' => now(),
-        ]);
-        
-        // Trigger commission calculations
-        $this->calculateCommissions($order);
-        
-        return $transaction;
+        if (!$secretKey) {
+            Log::error('Tap.sa secret key not set.');
+            $transaction->update(['status' => 'failed']);
+            return $transaction;
+        }
+
+        try {
+            $response = Http::withToken($secretKey)
+                ->post('https://api.tap.company/v2/charges', [
+                    'amount' => $order->total,
+                    'currency' => 'SAR',
+                    'customer' => [
+                        'first_name' => $order->user->name,
+                        'email' => $order->user->email,
+                        'phone' => [
+                            'country_code' => '966',
+                            'number' => $order->user->phone ?? '500000000',
+                        ]
+                    ],
+                    'source' => ['id' => 'src_all'],
+                    'redirect' => [
+                        'url' => route('customer.payments.callback', ['order' => $order->id, 'method' => 'tap_sa'])
+                    ],
+                    'reference' => [
+                        'transaction' => $transaction->transaction_id,
+                        'order' => $order->order_number,
+                    ]
+                ]);
+
+            if ($response->successful()) {
+                $data = $response->json();
+
+                // Store Tap ID and Redirect URL in metadata
+                $details['tap_id'] = $data['id'];
+                $details['redirect_url'] = $data['transaction']['url'];
+
+                $transaction->update([
+                    'metadata' => $details,
+                    'status' => 'pending',
+                ]);
+
+                return $transaction;
+            }
+
+            Log::error('Tap.sa API Error: ' . $response->body());
+            $transaction->update(['status' => 'failed']);
+            return $transaction;
+
+        } catch (\Exception $e) {
+            Log::error('Tap.sa Exception: ' . $e->getMessage());
+            $transaction->update(['status' => 'failed']);
+            return $transaction;
+        }
     }
 
     /**

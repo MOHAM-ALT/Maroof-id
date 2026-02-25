@@ -66,13 +66,72 @@ class PaymentController extends Controller
         }
 
         // Redirect to success page or payment gateway
-        if ($validated['payment_method'] === 'tap_sa' || $validated['payment_method'] === 'stripe') {
-            // Redirect to payment gateway
-            return redirect()->to($transaction->payment_url ?? '/')
-                ->with('success', 'يتم توجيهك لصفحة الدفع');
+        if ($validated['payment_method'] === 'tap_sa') {
+            $metadata = $transaction->metadata;
+            $redirectUrl = $metadata['redirect_url'] ?? null;
+
+            if ($redirectUrl) {
+                return redirect()->away($redirectUrl);
+            }
+
+            return back()->with('error', 'فشل الحصول على رابط الدفع من Tap.sa');
+        } elseif ($validated['payment_method'] === 'stripe') {
+             // Mock for Stripe
+             return redirect()->route('customer.payment.success', $transaction);
         } else {
             return redirect()->route('customer.payment.success', $transaction);
         }
+    }
+
+    /**
+     * Handle payment callback from gateway.
+     */
+    public function callback(Request $request, Order $order, string $method): RedirectResponse
+    {
+        $this->authorize('view', $order);
+
+        if ($method === 'tap_sa') {
+            $tap_id = $request->input('tap_id');
+            $secretKey = config('services.tap.secret_key');
+
+            if (!$tap_id || !$secretKey) {
+                return redirect()->route('customer.orders.show', $order)->with('error', 'بيانات الدفع غير مكتملة');
+            }
+
+            try {
+                $response = \Illuminate\Support\Facades\Http::withToken($secretKey)
+                    ->get("https://api.tap.company/v2/charges/{$tap_id}");
+
+                if ($response->successful()) {
+                    $data = $response->json();
+                    $status = $data['status'] ?? 'failed';
+
+                    $transaction = Transaction::where('order_id', $order->id)->latest()->first();
+
+                    if ($status === 'CAPTURED') {
+                        if ($transaction) {
+                            $transaction->update([
+                                'status' => 'completed',
+                                'gateway_transaction_id' => $tap_id,
+                                'gateway_response' => $data,
+                            ]);
+                        }
+
+                        $order->update([
+                            'payment_status' => PaymentStatus::Paid,
+                            'paid_at' => now(),
+                        ]);
+
+                        return redirect()->route('customer.payment.success', $transaction)
+                            ->with('success', 'تمت عملية الدفع بنجاح');
+                    }
+                }
+            } catch (\Exception $e) {
+                \Illuminate\Support\Facades\Log::error('Tap Callback Exception: ' . $e->getMessage());
+            }
+        }
+
+        return redirect()->route('customer.orders.show', $order)->with('error', 'فشلت عملية الدفع أو تم إلغاؤها');
     }
 
     /**

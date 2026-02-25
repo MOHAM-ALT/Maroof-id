@@ -2,9 +2,8 @@
 
 namespace App\Services;
 
-use Illuminate\Support\Facades\Notification;
-use NotificationChannels\Twilio\TwilioChannel;
-use NotificationChannels\Twilio\TwilioSmsMessage;
+use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Log;
 
 class SmsService
 {
@@ -13,19 +12,38 @@ class SmsService
      *
      * @param string $to Phone number (e.g., +966501234567)
      * @param string $message Message content
-     * @return void
+     * @return bool
      */
-    public function send(string $to, string $message): void
+    public function send(string $to, string $message): bool
     {
-        // Placeholder - will be implemented after Twilio credentials are added
-        // Developer needs to:
-        // 1. Add Twilio credentials to .env
-        // 2. Create a notification class
-        // 3. Implement the actual sending logic
-        
-        // Example implementation:
-        // Notification::route('twilio', $to)
-        //     ->notify(new YourCustomNotification($message));
+        $sid = config('services.twilio.sid');
+        $token = config('services.twilio.token');
+        $from = config('services.twilio.from');
+
+        if (!$sid || !$token || !$from) {
+            Log::error('Twilio credentials not set in environment.');
+            return false;
+        }
+
+        try {
+            $response = Http::withBasicAuth($sid, $token)
+                ->asForm()
+                ->post("https://api.twilio.com/2010-04-01/Accounts/{$sid}/Messages.json", [
+                    'To' => $to,
+                    'From' => $from,
+                    'Body' => $message,
+                ]);
+
+            if ($response->successful()) {
+                return true;
+            }
+
+            Log::error('Twilio SMS Failed: ' . $response->body());
+            return false;
+        } catch (\Exception $e) {
+            Log::error('Twilio SMS Exception: ' . $e->getMessage());
+            return false;
+        }
     }
 
     /**
@@ -33,12 +51,38 @@ class SmsService
      *
      * @param string $to Phone number (e.g., +966501234567)
      * @param string $message Message content
-     * @return void
+     * @return bool
      */
-    public function sendWhatsApp(string $to, string $message): void
+    public function sendWhatsApp(string $to, string $message): bool
     {
-        // Placeholder for WhatsApp implementation
-        // Similar to SMS but uses WhatsApp channel
+        $sid = config('services.twilio.sid');
+        $token = config('services.twilio.token');
+        $from = config('services.twilio.whatsapp_from');
+
+        if (!$sid || !$token || !$from) {
+            Log::error('Twilio WhatsApp credentials not set in environment.');
+            return false;
+        }
+
+        try {
+            $response = Http::withBasicAuth($sid, $token)
+                ->asForm()
+                ->post("https://api.twilio.com/2010-04-01/Accounts/{$sid}/Messages.json", [
+                    'To' => 'whatsapp:' . $to,
+                    'From' => 'whatsapp:' . $from,
+                    'Body' => $message,
+                ]);
+
+            if ($response->successful()) {
+                return true;
+            }
+
+            Log::error('Twilio WhatsApp Failed: ' . $response->body());
+            return false;
+        } catch (\Exception $e) {
+            Log::error('Twilio WhatsApp Exception: ' . $e->getMessage());
+            return false;
+        }
     }
 
     /**
@@ -46,11 +90,11 @@ class SmsService
      *
      * @param string $to Phone number
      * @param string $code Verification code
-     * @return void
+     * @return bool
      */
-    public function sendOtp(string $to, string $code): void
+    public function sendOtp(string $to, string $code): bool
     {
         $message = "Your Maroof verification code is: {$code}";
-        $this->send($to, $message);
+        return $this->send($to, $message);
     }
 }

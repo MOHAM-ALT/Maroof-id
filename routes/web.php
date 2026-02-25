@@ -130,6 +130,7 @@ Route::middleware(['auth', 'role:customer'])->prefix('customer')->name('customer
     // Payment
     Route::get('/payment/checkout/{order}', [PaymentController::class, 'checkout'])->name('payment.checkout');
     Route::post('/payment/process/{order}', [PaymentController::class, 'process'])->name('payment.process');
+    Route::get('/payment/callback/{order}/{method}', [PaymentController::class, 'callback'])->name('payments.callback');
     Route::get('/payment/success/{transaction}', [PaymentController::class, 'success'])->name('payment.success');
     Route::get('/payment/failed/{transaction}', [PaymentController::class, 'failed'])->name('payment.failed');
     Route::post('/payment/{transaction}/refund', [PaymentController::class, 'refund'])->name('payment.refund');
