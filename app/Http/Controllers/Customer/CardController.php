@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\Card;
 use App\Models\Template;
 use App\Services\CardService;
+use App\Http\Requests\Customer\StoreCardRequest;
+use App\Http\Requests\Customer\UpdateCardRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\RedirectResponse;
@@ -37,28 +39,9 @@ class CardController extends Controller
         return view('customer.cards.create', compact('templates'));
     }
 
-    public function store(Request $request): RedirectResponse
+    public function store(StoreCardRequest $request): RedirectResponse
     {
-        $validated = $request->validate([
-            'title' => 'required|string|max:255',
-            'template_id' => 'required|exists:templates,id',
-            'full_name' => 'required|string|max:255',
-            'job_title' => 'nullable|string|max:255',
-            'company' => 'nullable|string|max:255',
-            'bio' => 'nullable|string|max:1000',
-            'email' => 'nullable|email|max:255',
-            'phone' => 'nullable|string|max:20',
-            'whatsapp' => 'nullable|string|max:20',
-            'website' => 'nullable|url|max:255',
-            'address' => 'nullable|string|max:500',
-            'social_links' => 'nullable|array',
-            'social_links.*' => 'nullable|url|max:255',
-            'profile_image' => 'nullable|image|max:2048',
-            'cover_image' => 'nullable|image|max:2048',
-            'logo' => 'nullable|image|max:2048',
-            'password' => 'nullable|string|max:255',
-            'expires_at' => 'nullable|date',
-        ]);
+        $validated = $request->validated();
 
         $validated = $this->handleImageUploads($request, $validated);
 
@@ -99,30 +82,11 @@ class CardController extends Controller
         return view('customer.cards.edit', compact('card', 'templates'));
     }
 
-    public function update(Request $request, Card $card): RedirectResponse
+    public function update(UpdateCardRequest $request, Card $card): RedirectResponse
     {
         $this->authorize('update', $card);
 
-        $validated = $request->validate([
-            'title' => 'required|string|max:255',
-            'template_id' => 'required|exists:templates,id',
-            'full_name' => 'required|string|max:255',
-            'job_title' => 'nullable|string|max:255',
-            'company' => 'nullable|string|max:255',
-            'bio' => 'nullable|string|max:1000',
-            'email' => 'nullable|email|max:255',
-            'phone' => 'nullable|string|max:20',
-            'whatsapp' => 'nullable|string|max:20',
-            'website' => 'nullable|url|max:255',
-            'address' => 'nullable|string|max:500',
-            'social_links' => 'nullable|array',
-            'social_links.*' => 'nullable|url|max:255',
-            'profile_image' => 'nullable|image|max:2048',
-            'cover_image' => 'nullable|image|max:2048',
-            'logo' => 'nullable|image|max:2048',
-            'password' => 'nullable|string|max:255',
-            'expires_at' => 'nullable|date',
-        ]);
+        $validated = $request->validated();
 
         $validated = $this->handleImageUploads($request, $validated);
 

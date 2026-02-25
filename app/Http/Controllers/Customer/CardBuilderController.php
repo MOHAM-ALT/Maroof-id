@@ -6,9 +6,11 @@ use App\Http\Controllers\Controller;
 use App\Models\Card;
 use App\Models\Template;
 use App\Services\TemplateRenderer;
+use App\Http\Requests\Customer\SaveCardBuilderRequest;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\View\View;
 use Illuminate\Support\Str;
 
@@ -35,28 +37,9 @@ class CardBuilderController extends Controller
         ]);
     }
 
-    public function save(Request $request): JsonResponse
+    public function save(SaveCardBuilderRequest $request): JsonResponse
     {
-        $validated = $request->validate([
-            'card_id' => 'nullable|exists:cards,id',
-            'title' => 'required|string|max:255',
-            'full_name' => 'required|string|max:255',
-            'job_title' => 'nullable|string|max:255',
-            'company' => 'nullable|string|max:255',
-            'bio' => 'nullable|string|max:1000',
-            'email' => 'nullable|email|max:255',
-            'phone' => 'nullable|string|max:20',
-            'whatsapp' => 'nullable|string|max:20',
-            'website' => 'nullable|url|max:255',
-            'address' => 'nullable|string|max:500',
-            'template_id' => 'nullable|exists:templates,id',
-            'design_data' => 'nullable|json',
-            'social_links' => 'nullable|array',
-            'is_public' => 'nullable|boolean',
-            'password' => 'nullable|string|max:255',
-            'expires_at' => 'nullable|date',
-            'slug' => 'nullable|string|max:255',
-        ]);
+        $validated = $request->validated();
 
         $user = auth()->user();
 
@@ -74,9 +57,12 @@ class CardBuilderController extends Controller
             'template_id' => $validated['template_id'] ?? null,
             'design_data' => $validated['design_data'] ?? null,
             'is_public' => $validated['is_public'] ?? false,
-            'password' => !empty($validated['password']) ? $validated['password'] : null,
             'expires_at' => $validated['expires_at'] ?? null,
         ];
+
+        if (!empty($validated['password'])) {
+            $cardData['password'] = Hash::make($validated['password']);
+        }
 
         if (!empty($validated['card_id'])) {
             $card = Card::findOrFail($validated['card_id']);
@@ -108,16 +94,23 @@ class CardBuilderController extends Controller
 
         // Save social links
         if (isset($validated['social_links'])) {
-            $card->socialLinks()->delete();
+            $socialLinks = array_filter($validated['social_links']);
+            $platforms = array_keys($socialLinks);
+
+            // Delete links that are no longer in the request
+            $card->socialLinks()->whereNotIn('platform', $platforms)->delete();
+
             $order = 0;
-            foreach ($validated['social_links'] as $platform => $url) {
+            foreach ($socialLinks as $platform => $url) {
                 if (!empty($url)) {
-                    $card->socialLinks()->create([
-                        'platform' => $platform,
-                        'url' => $url,
-                        'sort_order' => $order++,
-                        'is_active' => true,
-                    ]);
+                    $card->socialLinks()->updateOrCreate(
+                        ['platform' => $platform],
+                        [
+                            'url' => $url,
+                            'sort_order' => $order++,
+                            'is_active' => true,
+                        ]
+                    );
                 }
             }
         }

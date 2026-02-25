@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\Hash;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 
@@ -147,7 +148,7 @@ class Card extends Model implements HasMedia
 
     public function checkPassword(string $password): bool
     {
-        return $this->password === $password;
+        return Hash::check($password, $this->password);
     }
 
     /**
