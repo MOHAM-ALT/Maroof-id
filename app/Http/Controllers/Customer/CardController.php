@@ -7,6 +7,7 @@ use App\Models\Card;
 use App\Models\Template;
 use App\Services\CardService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\JsonResponse;
 use Illuminate\View\View;
@@ -66,7 +67,7 @@ class CardController extends Controller
 
         $validated['is_active'] = $request->has('is_active');
         $validated['is_public'] = $request->has('is_public');
-        $validated['password'] = $request->input('password') ?: null;
+        $validated['password'] = $request->filled('password') ? Hash::make($request->password) : null;
         $validated['expires_at'] = $request->input('expires_at') ?: null;
 
         $card = $this->cardService->createCard(auth()->user(), $validated);
@@ -130,7 +131,15 @@ class CardController extends Controller
 
         $validated['is_active'] = $request->has('is_active');
         $validated['is_public'] = $request->has('is_public');
-        $validated['password'] = $request->input('password') ?: null;
+
+        if ($request->filled('password')) {
+            $validated['password'] = Hash::make($request->password);
+        } else if ($request->has('remove_password')) {
+            $validated['password'] = null;
+        } else {
+            unset($validated['password']);
+        }
+
         $validated['expires_at'] = $request->input('expires_at') ?: null;
 
         $card = $this->cardService->updateCard($card, $validated);
@@ -242,17 +251,22 @@ class CardController extends Controller
     private function saveSocialLinks(Card $card, array $socialLinks): void
     {
         $socialLinks = array_filter($socialLinks);
-        $card->socialLinks()->delete();
+        $platforms = array_keys($socialLinks);
+
+        // Delete links that are no longer in the request to clean up
+        $card->socialLinks()->whereNotIn('platform', $platforms)->delete();
 
         $order = 0;
         foreach ($socialLinks as $platform => $url) {
             if (!empty($url)) {
-                $card->socialLinks()->create([
-                    'platform' => $platform,
-                    'url' => $url,
-                    'sort_order' => $order++,
-                    'is_active' => true,
-                ]);
+                $card->socialLinks()->updateOrCreate(
+                    ['platform' => $platform],
+                    [
+                        'url' => $url,
+                        'sort_order' => $order++,
+                        'is_active' => true,
+                    ]
+                );
             }
         }
     }
