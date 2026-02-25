@@ -1,0 +1,85 @@
+/* maroof-pricing.css */
+.pricing-hero {
+    padding: 80px 28px 40px;
+    background: #FEFCF8;
+    border-bottom: 1px solid rgba(160, 114, 10, .15);
+    text-align: center
+}
+
+.pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+    max-width: 1000px;
+    margin: 52px auto 0
+}
+
+.price-card {
+    border-radius: 22px;
+    padding: 36px;
+    border: 1px solid rgba(160, 114, 10, .18);
+    background: #fff;
+    transition: all .25s;
+    position: relative
+}
+
+.price-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 48px rgba(0, 0, 0, .07);
+    border-color: rgba(160, 114, 10, .35)
+}
+
+.price-card.featured {
+    background: linear-gradient(145deg, #FFFBF2, #FFF4DC);
+    border-color: rgba(160, 114, 10, .35);
+    box-shadow: 0 0 0 3px rgba(160, 114, 10, .08)
+}
+
+.price-card.featured::before {
+    content: "الأفضل";
+    position: absolute;
+    top: -12px;
+    right: 50%;
+    transform: translateX(50%);
+    background: linear-gradient(135deg, #A0720A, #B8891E);
+    color: #fff;
+    font-size: 11px;
+    font-weight: 800;
+    padding: 4px 14px;
+    border-radius: 100px;
+    text-transform: uppercase;
+    letter-spacing: .5px
+}
+
+.price-amount {
+    font-size: 60px;
+    font-weight: 900;
+    letter-spacing: -3px;
+    color: #B8891E;
+    line-height: 1
+}
+
+.price-feature {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 0;
+    border-bottom: 1px solid rgba(160, 114, 10, .08);
+    font-size: 14px;
+    color: rgba(26, 18, 8, .68)
+}
+
+.price-feature:last-child {
+    border-bottom: none
+}
+
+.price-check {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: rgba(29, 107, 62, .12);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0
+}
