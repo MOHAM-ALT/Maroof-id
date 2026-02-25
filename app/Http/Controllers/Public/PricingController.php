@@ -28,7 +28,7 @@ class PricingController extends Controller
             [
                 'name' => 'الاحترافي',
                 'price' => '99',
-                'period' => 'ر.س / شهرياً',
+                'period' => 'ر.س / مرة واحدة للأبد',
                 'description' => 'للمحترفين وأصحاب الأعمال',
                 'features' => [
                     '5 بطاقات رقمية',
@@ -43,7 +43,7 @@ class PricingController extends Controller
             [
                 'name' => 'الأعمال',
                 'price' => '499',
-                'period' => 'ر.س / شهرياً',
+                'period' => 'ر.س / مرة واحدة للأبد',
                 'description' => 'للشركات والمؤسسات',
                 'features' => [
                     'بطاقات غير محدودة',

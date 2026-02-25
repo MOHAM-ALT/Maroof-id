@@ -21,16 +21,16 @@
             <div class="foot-col">
                 <h5>البرامج</h5>
                 <ul>
-                    <li><a href="{{ route('home') }}">موزع معروف</a></li>
-                    <li><a href="{{ route('home') }}">شراكة الطباعة</a></li>
-                    <li><a href="{{ route('home') }}">حلول الشركات</a></li>
-                    <li><a href="{{ route('home') }}">الانتساب</a></li>
+                    <li><a href="{{ route('home') }}#reseller">موزع معروف</a></li>
+                    <li><a href="{{ route('home') }}#reseller">شراكة الطباعة</a></li>
+                    <li><a href="{{ route('home') }}#orbit">حلول الشركات</a></li>
+                    <li><a href="{{ route('home') }}#changelog">الانتساب</a></li>
                 </ul>
             </div>
             <div class="foot-col">
                 <h5>الدعم</h5>
                 <ul>
-                    <li><a href="{{ route('contact') }}">واتساب مباشر</a></li>
+                    <li><a href="https://wa.me/966500000000" target="_blank">واتساب مباشر</a></li>
                     <li><a href="{{ route('contact') }}">مركز المساعدة</a></li>
                     <li><a href="#">سياسة الخصوصية</a></li>
                     <li><a href="#">الشروط والأحكام</a></li>

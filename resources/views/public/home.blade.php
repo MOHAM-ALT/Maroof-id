@@ -4,11 +4,11 @@
 @section('description', 'أنشئ بطاقة تعريفك الرقمية الذكية في دقائق. شارك معلوماتك بسهولة وأمان مع NFC و QR Code.')
 
 @push('head')
-    <link rel="stylesheet" href="{{ asset('css/maroof-home.css') }}">
+    @vite(['resources/css/maroof-home.css'])
 @endpush
 
 @push('scripts')
-    <script src="{{ asset('js/maroof-home.js') }}" defer></script>
+    @vite(['resources/js/maroof-home.js'])
 @endpush
 
 @section('content')
@@ -675,19 +675,240 @@
         </div>
     </section>
 
-    <section class="orbit">
+    <section class="reseller" id="reseller">
+        <div class="res-w">
+            <div>
+                <p class="sec-pre">برنامج الموزعين</p>
+                <h2 class="sec-h">اكسب من بيت<em>كـ</em></h2>
+                <p class="sec-sub" style="margin-bottom:28px">اشترِ بطاقات فارغة بالجملة، برمجها للعملاء بتطبيقنا، وارتح بربح 69
+                    ريال لكل بطاقة. لا محل ولا رأس مال كبير.</p>
+                <div class="levels">
+                    <div class="lv">
+                        <div>
+                            <div class="lv-name">مبتدئ</div>
+                            <div class="lv-range">0-99 بطاقة</div>
+                        </div>
+                        <div class="lv-earn">69 ريال/بطاقة</div>
+                    </div>
+                    <div class="lv">
+                        <div>
+                            <div class="lv-name">نشط</div>
+                            <div class="lv-range">100-499 بطاقة</div>
+                        </div>
+                        <div class="lv-earn">72 ريال/بطاقة</div>
+                    </div>
+                    <div class="lv">
+                        <div>
+                            <div class="lv-name">ممتاز</div>
+                            <div class="lv-range">500+ بطاقة</div>
+                        </div>
+                        <div class="lv-earn">75+ ريال/بطاقة</div>
+                    </div>
+                </div>
+                <a href="#" class="btn-gold" style="margin-top:24px;display:inline-flex">انضم كموزع ← ابدأ بـ 875 ريال</a>
+            </div>
+            <div class="profit-calc">
+                <h3 style="font-size:16px;font-weight:700;color:var(--t1);margin-bottom:18px;position:relative;z-index:1">🧮
+                    حاسبة الأرباح الشهرية</h3>
+                <div class="calc-row"><span class="calc-lbl">البطاقات المباعة</span><span class="calc-val">25 بطاقة</span></div>
+                <div class="calc-row"><span class="calc-lbl">سعر البيع</span><span class="calc-val">99 ريال/بطاقة</span></div>
+                <div class="calc-row"><span class="calc-lbl">تكلفة البطاقة (جملة)</span><span class="calc-val">- 30
+                        ريال/بطاقة</span></div>
+                <div class="calc-row"><span class="calc-lbl">ربحك الصافي</span><span class="calc-val profit">1,725 ريال</span>
+                </div>
+                <div class="calc-progress">
+                    <div class="cp-row"><span>الشهر 1</span><span>1,725 ريال</span></div>
+                    <div class="cp-bar">
+                        <div class="cp-fill" style="width:35%" id="cpf1"></div>
+                    </div>
+                    <div style="margin-top:8px"></div>
+                    <div class="cp-row"><span>الشهر 3</span><span>2,415 ريال</span></div>
+                    <div class="cp-bar">
+                        <div class="cp-fill" style="width:55%" id="cpf2"></div>
+                    </div>
+                    <div style="margin-top:8px"></div>
+                    <div class="cp-row"><span>الشهر 6</span><span>3,450+ ريال</span></div>
+                    <div class="cp-bar">
+                        <div class="cp-fill" style="width:80%" id="cpf3"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="orbit" id="orbit">
         <div class="orbit-w">
             <div>
                 <p class="sec-pre">ما تحتويه صفحتك</p>
                 <h2 class="sec-h">هويتك كاملة<br><em>في رابط واحد</em></h2>
-                <p class="sec-sub" style="margin-bottom:22px">كل ما يحتاج يعرفه من يريد التواصل معك، في مكان واحد أنيق ومنظم
-                    — من معلوماتك الشخصية إلى خريطتك ومواقع تواصلك.</p>
+                <p class="sec-sub" style="margin-bottom:22px">كل ما يحتاج يعرفه من يريد التواصل معك، في مكان واحد أنيق ومنظم —
+                    من معلوماتك الشخصية إلى خريطتك ومواقع تواصلك.</p>
                 <div class="int-chips">
                     <div class="ic">📱 LinkedIn</div>
                     <div class="ic">🐦 Twitter</div>
                     <div class="ic">📸 Instagram</div>
+                    <div class="ic">💻 GitHub</div>
+                    <div class="ic">▶️ YouTube</div>
                     <div class="ic">💬 واتساب</div>
+                    <div class="ic">🔗 موقعك</div>
                     <div class="ic">📍 خريطة AR</div>
+                    <div class="ic">📊 Portfolio</div>
+                    <div class="ic">+ أضف ما تريد</div>
+                </div>
+                <div class="stats" style="margin-top:28px">
+                    <div class="st">
+                        <div class="st-n">35<span>+</span></div>
+                        <div class="st-l">قالب احترافي</div>
+                    </div>
+                    <div class="st">
+                        <div class="st-n">99<span>٪</span></div>
+                        <div class="st-l">رضا العملاء</div>
+                    </div>
+                    <div class="st">
+                        <div class="st-n">3-5<span>أ</span></div>
+                        <div class="st-l">وقت التوصيل</div>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <svg viewBox="0 0 480 420" fill="none" style="width:100%;max-width:460px;display:block;margin:0 auto">
+                    <defs>
+                        <radialGradient id="hubG" cx="50%" cy="50%" r="50%">
+                            <stop offset="0%" stop-color="#C8973A" />
+                            <stop offset="100%" stop-color="#8B5E1A" />
+                        </radialGradient>
+                        <filter id="glow">
+                            <feGaussianBlur stdDeviation="5" result="b" />
+                            <feMerge>
+                                <feMergeNode in="b" />
+                                <feMergeNode in="SourceGraphic" />
+                            </feMerge>
+                        </filter>
+                    </defs>
+                    <circle cx="240" cy="210" r="100" stroke="rgba(200,151,58,0.18)" stroke-width="1.5" fill="none"
+                        stroke-dasharray="6 5">
+                        <animateTransform attributeName="transform" type="rotate" from="0 240 210" to="360 240 210" dur="30s"
+                            repeatCount="indefinite" />
+                    </circle>
+                    <circle cx="240" cy="210" r="155" stroke="rgba(200,151,58,0.09)" stroke-width="1" fill="none">
+                        <animateTransform attributeName="transform" type="rotate" from="360 240 210" to="0 240 210" dur="50s"
+                            repeatCount="indefinite" />
+                    </circle>
+                    <line x1="240" y1="210" x2="240" y2="90" stroke="rgba(200,151,58,0.4)" stroke-width="1.5"
+                        stroke-dasharray="5 4">
+                        <animate attributeName="stroke-dashoffset" from="0" to="-36" dur="1.6s" repeatCount="indefinite" />
+                    </line>
+                    <line x1="240" y1="210" x2="356" y2="278" stroke="rgba(45,122,79,0.38)" stroke-width="1.5"
+                        stroke-dasharray="5 4">
+                        <animate attributeName="stroke-dashoffset" from="0" to="-36" dur="2s" repeatCount="indefinite" />
+                    </line>
+                    <line x1="240" y1="210" x2="124" y2="278" stroke="rgba(44,95,158,0.38)" stroke-width="1.5"
+                        stroke-dasharray="5 4">
+                        <animate attributeName="stroke-dashoffset" from="0" to="-36" dur="1.8s" repeatCount="indefinite" />
+                    </line>
+                    <line x1="240" y1="210" x2="356" y2="142" stroke="rgba(200,151,58,0.32)" stroke-width="1.5"
+                        stroke-dasharray="5 4">
+                        <animate attributeName="stroke-dashoffset" from="0" to="-36" dur="1.5s" repeatCount="indefinite" />
+                    </line>
+                    <line x1="240" y1="210" x2="124" y2="142" stroke="rgba(200,151,58,0.32)" stroke-width="1.5"
+                        stroke-dasharray="5 4">
+                        <animate attributeName="stroke-dashoffset" from="0" to="-36" dur="2.2s" repeatCount="indefinite" />
+                    </line>
+                    <line x1="240" y1="210" x2="240" y2="330" stroke="rgba(158,44,44,0.32)" stroke-width="1.5"
+                        stroke-dasharray="5 4">
+                        <animate attributeName="stroke-dashoffset" from="0" to="-36" dur="1.3s" repeatCount="indefinite" />
+                    </line>
+                    <circle cx="240" cy="210" r="46" fill="url(#hubG)" filter="url(#glow)" />
+                    <circle cx="240" cy="210" r="46" stroke="rgba(255,255,255,0.2)" stroke-width="1.5" fill="none" />
+                    <text x="240" y="205" text-anchor="middle" font-size="13" font-weight="900" fill="white"
+                        font-family="Cairo,sans-serif">معروف</text>
+                    <text x="240" y="222" text-anchor="middle" font-size="9" fill="rgba(255,255,255,0.6)"
+                        font-family="Cairo,sans-serif">.ID</text>
+                    <g>
+                        <rect x="215" y="64" width="50" height="50" rx="12" fill="#0D0C09" stroke="rgba(200,151,58,0.4)"
+                            stroke-width="1.5" /><text x="240" y="96" text-anchor="middle" font-size="11" fill="rgba(200,151,58,0.8)"
+                            font-family="Cairo,sans-serif">NFC</text><text x="240" y="124" text-anchor="middle" font-size="10"
+                            fill="rgba(249,244,236,0.35)" font-family="Cairo,sans-serif">بطاقة ذكية</text>
+                    </g>
+                    <g>
+                        <rect x="330" y="252" width="50" height="50" rx="12" fill="#0D0C09" stroke="rgba(45,122,79,0.4)"
+                            stroke-width="1.5" /><text x="355" y="283" text-anchor="middle" font-size="10" fill="rgba(45,122,79,0.9)"
+                            font-family="Cairo,sans-serif">صفحة</text><text x="355" y="313" text-anchor="middle" font-size="10"
+                            fill="rgba(249,244,236,0.35)" font-family="Cairo,sans-serif">رقمية</text>
+                    </g>
+                    <g>
+                        <rect x="100" y="252" width="50" height="50" rx="12" fill="#0D0C09" stroke="rgba(44,95,158,0.4)"
+                            stroke-width="1.5" /><text x="125" y="283" text-anchor="middle" font-size="10" fill="rgba(44,95,158,0.9)"
+                            font-family="Cairo,sans-serif">خريطة</text><text x="125" y="313" text-anchor="middle" font-size="10"
+                            fill="rgba(249,244,236,0.35)" font-family="Cairo,sans-serif">AR</text>
+                    </g>
+                    <g>
+                        <rect x="330" y="116" width="50" height="50" rx="12" fill="#0D0C09" stroke="rgba(200,151,58,0.4)"
+                            stroke-width="1.5" /><text x="355" y="148" text-anchor="middle" font-size="10" fill="rgba(200,151,58,0.9)"
+                            font-family="Cairo,sans-serif">روابط</text><text x="355" y="178" text-anchor="middle" font-size="10"
+                            fill="rgba(249,244,236,0.35)" font-family="Cairo,sans-serif">تواصل</text>
+                    </g>
+                    <g>
+                        <rect x="100" y="116" width="50" height="50" rx="12" fill="#0D0C09" stroke="rgba(200,151,58,0.35)"
+                            stroke-width="1.5" /><text x="125" y="148" text-anchor="middle" font-size="10" fill="rgba(200,151,58,0.9)"
+                            font-family="Cairo,sans-serif">تحليل</text><text x="125" y="178" text-anchor="middle" font-size="10"
+                            fill="rgba(249,244,236,0.35)" font-family="Cairo,sans-serif">ذكي</text>
+                    </g>
+                    <g>
+                        <rect x="215" y="304" width="50" height="50" rx="12" fill="#0D0C09" stroke="rgba(158,44,44,0.4)"
+                            stroke-width="1.5" /><text x="240" y="335" text-anchor="middle" font-size="10" fill="rgba(158,44,44,0.9)"
+                            font-family="Cairo,sans-serif">قوالب</text><text x="240" y="365" text-anchor="middle" font-size="10"
+                            fill="rgba(249,244,236,0.35)" font-family="Cairo,sans-serif">35+</text>
+                    </g>
+                    <circle r="4.5" fill="rgba(200,151,58,0.8)">
+                        <animateMotion dur="2.4s" repeatCount="indefinite" path="M240,91 L240,164" />
+                        <animate attributeName="opacity" values="0;0.8;0" dur="2.4s" repeatCount="indefinite" />
+                    </circle>
+                    <circle r="4" fill="rgba(45,122,79,0.8)">
+                        <animateMotion dur="3s" repeatCount="indefinite" begin="0.8s" path="M356,143 L295,185" />
+                        <animate attributeName="opacity" values="0;0.8;0" dur="3s" begin="0.8s" repeatCount="indefinite" />
+                    </circle>
+                    <circle r="4" fill="rgba(44,95,158,0.8)">
+                        <animateMotion dur="2.8s" repeatCount="indefinite" begin="1.5s" path="M124,278 L180,237" />
+                        <animate attributeName="opacity" values="0;0.8;0" dur="2.8s" begin="1.5s" repeatCount="indefinite" />
+                    </circle>
+                </svg>
+            </div>
+        </div>
+    </section>
+
+    <section class="cl" id="changelog">
+        <div class="cl-w">
+            <div class="cl-l">
+                <p class="sec-pre">آخر التحديثات</p>
+                <h2 class="sec-h">نطوّر<br><em>باستمرار</em></h2>
+                <p class="sec-sub" style="margin-bottom:16px">ميزات جديدة كل شهر، بناءً على ما يطلبه عملاؤنا فعلاً.</p>
+                <a href="#" class="btn-ghost">عرض الكل</a>
+            </div>
+            <div class="cl-feed">
+                <div class="cl-item">
+                    <div class="cl-meta"><span class="cl-tag gold">جديد</span><span class="cl-date">يناير 2025</span></div>
+                    <h4 class="cl-title">خريطة AR Web — الواقع المعزز في صفحتك</h4>
+                    <p class="cl-body">أضف موقع مكتبك وشاهد عملاءك يجدون طريقهم إليك عبر تجربة واقع معزز مذهلة مباشرة من المتصفح —
+                        بدون تطبيق.</p>
+                </div>
+                <div class="cl-item">
+                    <div class="cl-meta"><span class="cl-tag green">تحسين</span><span class="cl-date">ديسمبر 2024</span></div>
+                    <h4 class="cl-title">تحليلات محسّنة مع تفاصيل جهات الاتصال</h4>
+                    <p class="cl-body">اعرف الآن اسم وجهة الاتصال التي حفظت بياناتك عبر الموقع — مع تفاصيل التوقيت والمصدر
+                        والجهاز.</p>
+                </div>
+                <div class="cl-item">
+                    <div class="cl-meta"><span class="cl-tag blue">تكامل</span><span class="cl-date">نوفمبر 2024</span></div>
+                    <h4 class="cl-title">قوالب جديدة — الطب، العقارات، صناع المحتوى</h4>
+                    <p class="cl-body">أضفنا 12 قالباً جديداً مصمماً لأطباء، وكلاء عقار، ومؤثرين رقميين — مع دعم كامل للـ RTL
+                        العربي.</p>
+                </div>
+                <div class="cl-item">
+                    <div class="cl-meta"><span class="cl-tag gold">جديد</span><span class="cl-date">أكتوبر 2024</span></div>
+                    <h4 class="cl-title">تطبيق NFC Writer للموزعين — برمجة في 30 ثانية</h4>
+                    <p class="cl-body">تطبيق خاص للموزعين يتيح برمجة بطاقات العملاء مباشرة من الجوال خلال 30 ثانية، مع تتبع
+                        المبيعات وإدارة المخزون.</p>
                 </div>
             </div>
         </div>
