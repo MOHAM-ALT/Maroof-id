@@ -1,1199 +1,0 @@
-@extends('layouts.public')
-
-@section('title', 'معروف ID — بطاقتك الذكية، هويتك الرقمية')
-@section('description', 'أنشئ بطاقة تعريفك الرقمية الذكية في دقائق. شارك معلوماتك بسهولة وأمان مع NFC و QR Code.')
-
-@push('head')
-    <link rel="stylesheet" href="{{ asset('css/maroof-home.css') }}">
-@endpush
-
-@push('scripts')
-    <script src="{{ asset('js/maroof-home.js') }}" defer></script>
-@endpush
-
-@section('content')
-    <section class="hero">
-        <div class="hero-dots"></div>
-        <div class="hero-w">
-            <div>
-                <div class="hero-kicker"><span class="hero-kicker-dot"></span>منصة سعودية 100% · مصممة للمحترف العربي</div>
-                <h1 class="hero-h1">بطاقتك الذكية،<br><span class="gold">هويتك الرقمية</span><br>مرة واحدة، للأبد</h1>
-                <p class="hero-sub">بطاقة NFC فاخرة + صفحة رقمية احترافية + خريطة مدعومة بالواقع المعزز. ادفع مرة واحدة 99 ريال
-                    فقط، وعدّل معلوماتك متى ما بغيت — بدون اشتراكات، بدون مفاجآت.</p>
-                <div class="hero-btns">
-                    <a href="{{ route('register') }}" class="hero-price">
-                        <span>ابدأ الآن · فقط</span>
-                        <strong>99 ريال</strong>
-                        <span class="hero-price-old">vs 450 ريال/سنة</span>
-                    </a>
-                    <a href="#how" class="hero-demo">
-                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                            <circle cx="8" cy="8" r="6.5" stroke="currentColor" stroke-width="1.3" />
-                            <path d="M6.5 5.5l4 2.5-4 2.5V5.5z" fill="currentColor" />
-                        </svg>
-                        شاهد كيف تعمل
-                    </a>
-                </div>
-                <div class="hero-proof">
-                    <div class="avs">
-                        <div class="av" style="background:var(--gold)">أ</div>
-                        <div class="av" style="background:#2D7A4F">م</div>
-                        <div class="av" style="background:#2C5F9E">س</div>
-                        <div class="av" style="background:#8B4513">ف</div>
-                        <div class="av" style="background:var(--gold2)">ع</div>
-                    </div>
-                    <p class="proof-t"><strong>+5,200 محترف سعودي</strong> يستخدمون معروف ID اليوم</p>
-                </div>
-            </div>
-            <div class="hero-vis">
-                <div class="card-3d">
-                    <div class="phone-mock">
-                        <div class="phone-screen">
-                            <div class="ph-avatar">أ</div>
-                            <div class="ph-name">أحمد العتيبي</div>
-                            <div class="ph-role">مهندس برمجيات · أرامكو</div>
-                            <div class="ph-links">
-                                <div class="ph-link">in</div>
-                                <div class="ph-link">tw</div>
-                                <div class="ph-link">ig</div>
-                                <div class="ph-link">gh</div>
-                            </div>
-                            <div class="ph-ar-badge">📍 AR خريطة مباشرة</div>
-                        </div>
-                    </div>
-                    <div class="card-inner">
-                        <div class="card-shine"></div>
-                        <div class="card-pattern"></div>
-                        <div class="card-logo">معروف.ID</div>
-                        <div class="card-nfc">
-                            <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-                                <path d="M3 7c0-2.2 1.8-4 4-4" stroke="rgba(200,151,58,0.8)" stroke-width="1.3"
-                                    stroke-linecap="round" />
-                                <path d="M5 7c0-1.1.9-2 2-2" stroke="rgba(200,151,58,0.6)" stroke-width="1.3"
-                                    stroke-linecap="round" />
-                                <circle cx="7" cy="7" r="1" fill="rgba(200,151,58,0.8)" />
-                            </svg>
-                        </div>
-                        <div class="card-name">أحمد العتيبي</div>
-                        <div class="card-title">مهندس برمجيات · أرامكو السعودية</div>
-                        <div class="card-url">maroof-id.com/ahmed-alotaibi</div>
-                        <div class="card-chip"></div>
-                    </div>
-                    <div class="fl-card">
-                        <div class="fl-l">مشاهدات هذا الأسبوع</div>
-                        <div class="fl-v">247</div>
-                        <div class="fl-s">↑ 23% مقارنة بالأسبوع الماضي</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <div class="logos">
-        <div class="logos-w">
-            <p class="logos-l">محترفون من</p>
-            <div class="logos-row">
-                <span class="lco">أرامكو</span><span class="lco">STC</span><span class="lco">الراجحي</span><span
-                    class="lco">NEOM</span><span class="lco">stc pay</span><span class="lco">مدى</span>
-            </div>
-        </div>
-    </div>
-
-    <div class="mq-wrap">
-        <div class="mq-inner" id="mq1">
-            <span class="mqi"><svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-                    <rect x="1" y="1" width="10" height="10" rx="2" stroke="currentColor" stroke-width="1.2" />
-                </svg>بطاقة NFC فاخرة</span>
-            <span class="mqi"><svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-                    <circle cx="6" cy="6" r="5" stroke="currentColor" stroke-width="1.2" />
-                </svg>صفحة رقمية احترافية</span>
-            <span class="mqi"><svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-                    <path d="M6 1v10M1 6h10" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" />
-                </svg>خريطة AR مدمجة</span>
-            <span class="mqi"><svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-                    <path d="M2 2l4 4-4 4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"
-                        stroke-linejoin="round" />
-                </svg>35+ قالب احترافي</span>
-            <span class="mqi"><svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-                    <rect x="1" y="1" width="10" height="10" rx="2" stroke="currentColor" stroke-width="1.2" />
-                    <path d="M4 6h4M4 8h2" stroke="currentColor" stroke-width="1" stroke-linecap="round" />
-                </svg>تحليلات ذكية</span>
-            <span class="mqi"><svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-                    <path d="M6 1v10M1 6h10" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" />
-                </svg>بدون اشتراكات</span>
-            <span class="mqi"><svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-                    <circle cx="6" cy="6" r="5" stroke="currentColor" stroke-width="1.2" />
-                    <path d="M4 6l1.5 1.5L8.5 4" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" />
-                </svg>دفع بمدى و STC Pay</span>
-            <span class="mqi"><svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-                    <path d="M6 1v10M1 6h10" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" />
-                </svg>شحن 3-5 أيام</span>
-            <span class="mqi"><svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-                    <rect x="1" y="1" width="10" height="10" rx="2" stroke="currentColor" stroke-width="1.2" />
-                </svg>بطاقة NFC فاخرة</span>
-            <span class="mqi"><svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-                    <circle cx="6" cy="6" r="5" stroke="currentColor" stroke-width="1.2" />
-                </svg>صفحة رقمية احترافية</span>
-            <span class="mqi"><svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-                    <path d="M6 1v10M1 6h10" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" />
-                </svg>خريطة AR مدمجة</span>
-            <span class="mqi"><svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-                    <path d="M2 2l4 4-4 4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"
-                        stroke-linejoin="round" />
-                </svg>35+ قالب احترافي</span>
-            <span class="mqi"><svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-                    <rect x="1" y="1" width="10" height="10" rx="2" stroke="currentColor" stroke-width="1.2" />
-                    <path d="M4 6h4M4 8h2" stroke="currentColor" stroke-width="1" stroke-linecap="round" />
-                </svg>تحليلات ذكية</span>
-            <span class="mqi"><svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-                    <path d="M6 1v10M1 6h10" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" />
-                </svg>بدون اشتراكات</span>
-            <span class="mqi"><svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-                    <circle cx="6" cy="6" r="5" stroke="currentColor" stroke-width="1.2" />
-                    <path d="M4 6l1.5 1.5L8.5 4" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" />
-                </svg>دفع بمدى و STC Pay</span>
-            <span class="mqi"><svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-                    <path d="M6 1v10M1 6h10" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" />
-                </svg>شحن 3-5 أيام</span>
-        </div>
-    </div>
-
-    <section class="features" id="features">
-        <div class="feat-w">
-            <p class="sec-pre">لماذا معروف ID</p>
-            <h2 class="sec-h">كل ما يحتاجه المحترف<br><em>في بطاقة واحدة</em></h2>
-            <p class="sec-sub">بطاقة واحدة تجمع هويتك المهنية، معلوماتك، روابطك، وموقعك على الخريطة — كلها تتحدث تلقائياً عند
-                التعديل.</p>
-            <div class="feat-grid">
-                <div class="fc">
-                    <div class="fc-ico" style="background:rgba(200,151,58,0.12);border-color:rgba(200,151,58,0.2)">
-                        <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
-                            <rect x="2" y="5" width="18" height="14" rx="2.5" stroke="#C8973A" stroke-width="1.6" />
-                            <path d="M7 5V4a4 4 0 018 0v1" stroke="#C8973A" stroke-width="1.6" stroke-linecap="round" />
-                            <circle cx="11" cy="12" r="2.5" stroke="#C8973A" stroke-width="1.4" />
-                        </svg>
-                    </div>
-                    <h3>بطاقة NFC ذكية</h3>
-                    <p>بطاقة بلاستيكية فاخرة بـ chip NTAG215 موثوق. قرّبها من أي جوال حديث ويظهر ملفك فوراً — بدون تطبيق ولا
-                        إنترنت.</p>
-                    <span class="fc-tag" style="background:rgba(200,151,58,0.1);color:var(--gold)">مميز</span>
-                </div>
-                <div class="fc">
-                    <div class="fc-ico" style="background:rgba(45,122,79,0.12);border-color:rgba(45,122,79,0.2)">
-                        <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
-                            <rect x="2" y="2" width="18" height="18" rx="3" stroke="#2D7A4F" stroke-width="1.6" />
-                            <path d="M7 11h8M7 8h5M7 14h6" stroke="#2D7A4F" stroke-width="1.4" stroke-linecap="round" />
-                        </svg>
-                    </div>
-                    <h3>صفحة رقمية احترافية</h3>
-                    <p>ملفك الشخصي على رابط ثابت (maroof-id.com/اسمك). أضف صورتك، مسماك، روابطك، نبذتك — كل شيء في صفحة واحدة
-                        أنيقة.</p>
-                    <span class="fc-tag" style="background:rgba(45,122,79,0.1);color:#4ade80">جاهزة فوراً</span>
-                </div>
-                <div class="fc">
-                    <div class="fc-ico" style="background:rgba(200,151,58,0.12);border-color:rgba(200,151,58,0.2)">
-                        <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
-                            <circle cx="11" cy="10" r="4" stroke="#C8973A" stroke-width="1.6" />
-                            <path d="M11 14v4M8 18h6" stroke="#C8973A" stroke-width="1.5" stroke-linecap="round" />
-                            <path d="M3 6l3 2M19 6l-3 2" stroke="#C8973A" stroke-width="1.3" stroke-linecap="round" opacity=".5" />
-                        </svg>
-                    </div>
-                    <h3>خريطة مدعومة بـ AR</h3>
-                    <p>أضف موقع مكتبك أو محلك — يظهر على خريطة تفاعلية مع تجربة واقع معزز خاصة. عميلك يجد مكانك بسهولة تامة.</p>
-                    <span class="fc-tag" style="background:rgba(200,151,58,0.1);color:var(--gold)">AR Web</span>
-                </div>
-                <div class="fc">
-                    <div class="fc-ico" style="background:rgba(44,95,158,0.12);border-color:rgba(44,95,158,0.2)">
-                        <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
-                            <path d="M4 16l4-8 4 8M13 10l5 6" stroke="#6096D4" stroke-width="1.6" stroke-linecap="round"
-                                stroke-linejoin="round" />
-                            <circle cx="16" cy="7" r="2" stroke="#6096D4" stroke-width="1.4" />
-                        </svg>
-                    </div>
-                    <h3>35+ قالب احترافي</h3>
-                    <p>قوالب مصممة لكل مجال: أطباء، مهندسون، محامون، مسوّقون، صناع محتوى. اختر ما يعبّر عن شخصيتك وتخصصك.</p>
-                    <span class="fc-tag" style="background:rgba(44,95,158,0.1);color:#60a5fa">مميزة</span>
-                </div>
-                <div class="fc">
-                    <div class="fc-ico" style="background:rgba(200,151,58,0.12);border-color:rgba(200,151,58,0.2)">
-                        <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
-                            <path d="M4 16l3-6 3 6M13 10l2 6 2-4 2 4" stroke="#C8973A" stroke-width="1.5"
-                                stroke-linecap="round" stroke-linejoin="round" />
-                            <rect x="2" y="4" width="18" height="14" rx="2" stroke="#C8973A" stroke-width="1.5" fill="none"
-                                opacity=".3" />
-                        </svg>
-                    </div>
-                    <h3>تحليلات ذكية</h3>
-                    <p>اعرف من شاف ملفك، من مسح البطاقة، من حفظ رقمك — إحصائيات دقيقة في Dashboard بسيط وواضح.</p>
-                    <span class="fc-tag" style="background:rgba(200,151,58,0.1);color:var(--gold)">لحظة بلحظة</span>
-                </div>
-                <div class="fc">
-                    <div class="fc-ico" style="background:rgba(45,122,79,0.12);border-color:rgba(45,122,79,0.2)">
-                        <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
-                            <path d="M4 12l5 5L18 7" stroke="#2D7A4F" stroke-width="2" stroke-linecap="round"
-                                stroke-linejoin="round" />
-                        </svg>
-                    </div>
-                    <h3>تحديثات مجانية للأبد</h3>
-                    <p>غيّر رقمك، شركتك، لقبك، صورتك — عدّل من Dashboard والبطاقة تتحدث فوراً. لا طباعة جديدة، لا تكاليف إضافية.
-                    </p>
-                    <span class="fc-tag" style="background:rgba(45,122,79,0.1);color:#4ade80">مجاني</span>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="counter" id="cntSec">
-        <div class="cnt-w">
-            <div>
-                <p class="sec-pre">نتائج حقيقية</p>
-                <h2 class="sec-h" style="max-width:none">أرقام<br><em>تتحدث بنفسها</em></h2>
-                <p style="font-size:15px;color:var(--t2);line-height:1.7;margin-bottom:32px;max-width:420px">منذ الإطلاق،
-                    والمحترفون السعوديون يختارون معروف ID الأسرع في النمو والأوفر تكلفة.</p>
-                <div style="display:flex;align-items:baseline;margin-bottom:8px">
-                    <div class="d-slot">
-                        <div class="d-reel" id="r0">0</div>
-                    </div>
-                    <div class="d-slot">
-                        <div class="d-reel" id="r1">0</div>
-                    </div>
-                    <div class="d-sep">,</div>
-                    <div class="d-slot">
-                        <div class="d-reel" id="r2">0</div>
-                    </div>
-                    <div class="d-slot">
-                        <div class="d-reel" id="r3">0</div>
-                    </div>
-                    <div class="d-slot">
-                        <div class="d-reel" id="r4">0</div>
-                    </div>
-                </div>
-                <div style="font-size:12px;color:var(--t4);margin-bottom:28px">بطاقة ذكية تم تفعيلها حتى الآن</div>
-                <div class="tl">
-                    <div class="tl-dot"></div>
-                    <div class="tl-bar">
-                        <div class="tl-fill" id="tlFill"></div><span class="tl-lbl s">يناير 2025</span><span
-                            class="tl-lbl e">اليوم</span>
-                    </div>
-                    <div class="tl-dot"></div>
-                </div>
-            </div>
-            <div class="cnt-feats">
-                <div class="cnt-f">
-                    <div class="cnt-f-ico"><svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                            <path d="M2 8l4 4 8-8" stroke="#C8973A" stroke-width="1.6" stroke-linecap="round"
-                                stroke-linejoin="round" />
-                        </svg></div>
-                    <div>
-                        <h4>بدون اشتراكات شهرية</h4>
-                        <p>ادفع 99 ريال مرة واحدة، والبطاقة معك للأبد</p>
-                    </div>
-                </div>
-                <div class="cnt-f">
-                    <div class="cnt-f-ico"><svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                            <circle cx="8" cy="8" r="6" stroke="#C8973A" stroke-width="1.4" />
-                            <path d="M8 5v3l2 2" stroke="#C8973A" stroke-width="1.4" stroke-linecap="round" />
-                        </svg></div>
-                    <div>
-                        <h4>تحديث في أقل من 60 ثانية</h4>
-                        <p>غيّر بياناتك وستظهر فوراً لكل من يمسح البطاقة</p>
-                    </div>
-                </div>
-                <div class="cnt-f">
-                    <div class="cnt-f-ico"><svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                            <path d="M8 2l1.8 3.6H14l-3.5 2.7 1.3 4L8 10l-3.8 2.3 1.3-4L2 5.6h4.2L8 2z" stroke="#C8973A"
-                                stroke-width="1.3" fill="none" stroke-linejoin="round" />
-                        </svg></div>
-                    <div>
-                        <h4>تقييم 4.9 نجوم من المستخدمين</h4>
-                        <p>أعلى تقييم في السوق السعودي لمنتجات مماثلة</p>
-                    </div>
-                </div>
-                <div class="cnt-f">
-                    <div class="cnt-f-ico"><svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                            <path d="M3 8h10M3 5h7M3 11h5" stroke="#C8973A" stroke-width="1.4" stroke-linecap="round" />
-                        </svg></div>
-                    <div>
-                        <h4>دعم عربي بواتساب</h4>
-                        <p>فريق سعودي يرد خلال ساعة في أوقات العمل</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <div class="tags-wrap">
-        <div class="tag-row" style="animation-duration:20s">
-            <span class="ctag"><span class="ctag-dot" style="background:var(--gold)"></span>مهندس برمجيات</span>
-            <span class="ctag"><span class="ctag-dot" style="background:#2D7A4F"></span>وكيل عقاري</span>
-            <span class="ctag"><span class="ctag-dot" style="background:#2C5F9E"></span>طبيب أسنان</span>
-            <span class="ctag"><span class="ctag-dot" style="background:var(--gold2)"></span>مصمم جرافيك</span>
-            <span class="ctag"><span class="ctag-dot" style="background:#8B4513"></span>محاسب قانوني</span>
-            <span class="ctag"><span class="ctag-dot" style="background:var(--gold)"></span>مدير مبيعات</span>
-            <span class="ctag"><span class="ctag-dot" style="background:#2D7A4F"></span>مستشار مالي</span>
-            <span class="ctag"><span class="ctag-dot" style="background:#6929C4"></span>صانع محتوى</span>
-            <span class="ctag"><span class="ctag-dot" style="background:var(--gold)"></span>مهندس برمجيات</span>
-            <span class="ctag"><span class="ctag-dot" style="background:#2D7A4F"></span>وكيل عقاري</span>
-            <span class="ctag"><span class="ctag-dot" style="background:#2C5F9E"></span>طبيب أسنان</span>
-            <span class="ctag"><span class="ctag-dot" style="background:var(--gold2)"></span>مصمم جرافيك</span>
-        </div>
-        <div class="tag-row" style="animation-duration:24s">
-            <span class="ctag"><span class="ctag-dot" style="background:#9E2C2C"></span>محامي</span>
-            <span class="ctag"><span class="ctag-dot" style="background:var(--gold2)"></span>مؤثر رقمي</span>
-            <span class="ctag"><span class="ctag-dot" style="background:#2C5F9E"></span>صيدلاني</span>
-            <span class="ctag"><span class="ctag-dot" style="background:var(--gold)"></span>مدير تسويق</span>
-            <span class="ctag"><span class="ctag-dot" style="background:#2D7A4F"></span>مهندس مدني</span>
-            <span class="ctag"><span class="ctag-dot" style="background:#8B4513"></span>كاتب محتوى</span>
-            <span class="ctag"><span class="ctag-dot" style="background:var(--gold)"></span>معالج نفسي</span>
-            <span class="ctag"><span class="ctag-dot" style="background:#9E2C2C"></span>مدير HR</span>
-            <span class="ctag"><span class="ctag-dot" style="background:var(--gold2)"></span>مؤثر رقمي</span>
-            <span class="ctag"><span class="ctag-dot" style="background:#2C5F9E"></span>صيدلاني</span>
-            <span class="ctag"><span class="ctag-dot" style="background:var(--gold)"></span>مدير تسويق</span>
-        </div>
-        <div class="tag-row" style="animation-duration:18s">
-            <span class="ctag"><span class="ctag-dot" style="background:var(--gold)"></span>خبير ضرائب</span>
-            <span class="ctag"><span class="ctag-dot" style="background:#2D7A4F"></span>مدرب رياضي</span>
-            <span class="ctag"><span class="ctag-dot" style="background:#6929C4"></span>مستشار تقني</span>
-            <span class="ctag"><span class="ctag-dot" style="background:var(--gold2)"></span>رائد أعمال</span>
-            <span class="ctag"><span class="ctag-dot" style="background:#2C5F9E"></span>مصور فوتوغرافي</span>
-            <span class="ctag"><span class="ctag-dot" style="background:var(--gold)"></span>مهندس معماري</span>
-            <span class="ctag"><span class="ctag-dot" style="background:#8B4513"></span>مدير مشاريع</span>
-            <span class="ctag"><span class="ctag-dot" style="background:var(--gold)"></span>خبير ضرائب</span>
-            <span class="ctag"><span class="ctag-dot" style="background:#2D7A4F"></span>مدرب رياضي</span>
-            <span class="ctag"><span class="ctag-dot" style="background:#6929C4"></span>مستشار تقني</span>
-        </div>
-    </div>
-
-    <section class="showcase" id="how">
-        <div class="show-w">
-            <div class="sc-l">
-                <p class="sec-pre">كيف يعمل</p>
-                <h2 class="sec-h" style="max-width:none">ملفك الرقمي<br>بكل تفصيله</h2>
-                <div class="sc-steps">
-                    <div class="ss on" data-step="0">
-                        <div class="ss-n">1</div>
-                        <div>
-                            <h4>معلوماتك الشخصية والمهنية</h4>
-                            <p>اسمك، لقبك، شركتك، صورتك، نبذتك — كلها في صفحة واحدة أنيقة تعكس شخصيتك المهنية.</p>
-                        </div>
-                    </div>
-                    <div class="ss" data-step="1">
-                        <div class="ss-n">2</div>
-                        <div>
-                            <h4>روابطك ووسائل تواصلك</h4>
-                            <p>LinkedIn، Twitter، Instagram، GitHub، YouTube، واتساب — ربطها كلها في مكان واحد يسهّل
-                                التواصل.</p>
-                        </div>
-                    </div>
-                    <div class="ss" data-step="2">
-                        <div class="ss-n">3</div>
-                        <div>
-                            <h4>خريطة AR لموقعك</h4>
-                            <p>موقع مكتبك أو محلك بخريطة تفاعلية مع تجربة واقع معزز خاصة — عميلك يصلك بسهولة.</p>
-                        </div>
-                    </div>
-                    <div class="ss" data-step="3">
-                        <div class="ss-n">4</div>
-                        <div>
-                            <h4>تحليلات ومتابعة</h4>
-                            <p>اعرف عدد المشاهدات، عمليات مسح NFC، حفظ جهات الاتصال — كل شيء في لوحة تحكم بسيطة.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="sc-r">
-                <div class="sc-p" data-panel="0">
-                    <div class="ph-bar"><span class="pt">الملف الشخصي</span><span class="pb"><span
-                                class="ldot"></span>مباشر</span></div>
-                    <div class="profile-card">
-                        <div class="profile-hdr"></div>
-                        <div class="profile-body">
-                            <div class="profile-av">أ</div>
-                            <div class="profile-nm">أحمد العتيبي</div>
-                            <div class="profile-ro">مهندس برمجيات · أرامكو السعودية</div>
-                            <div class="profile-bio">متخصص في تطوير الأنظمة الذكية وحلول السحابة. أكثر من 8 سنوات خبرة في تقنية
-                                المعلومات والبنية التحتية الرقمية.</div>
-                            <div class="profile-links">
-                                <a href="#" class="plink"><svg width="13" height="13" viewBox="0 0 13 13" fill="none">
-                                    <rect x="1" y="1" width="11" height="11" rx="2" stroke="currentColor" stroke-width="1.2" />
-                                    <circle cx="6.5" cy="6.5" r="2.5" stroke="currentColor" stroke-width="1.1" />
-                                  </svg>Instagram</a>
-                                <a href="#" class="plink">💼 LinkedIn</a>
-                                <a href="#" class="plink">🐦 Twitter</a>
-                                <a href="#" class="plink">💻 GitHub</a>
-                                <a href="#" class="plink">📞 واتساب</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="sc-p" data-panel="1">
-                    <div class="ph-bar"><span class="pt">الروابط والتواصل</span><span class="pb"><span
-                                class="ldot"></span>مباشر</span></div>
-                    <div style="display:flex;flex-direction:column;gap:8px">
-                        <div
-                            style="padding:12px 14px;background:#F8F5EF;border:1px solid var(--bd);border-radius:10px;display:flex;align-items:center;justify-content:space-between">
-                            <div style="display:flex;align-items:center;gap:10px">
-                                <div
-                                    style="width:32px;height:32px;border-radius:8px;background:rgba(200,151,58,0.15);display:flex;align-items:center;justify-content:center;font-size:13px">
-                                    in</div>
-                                <div>
-                                    <div style="font-size:13px;font-weight:700;color:var(--t1)">LinkedIn</div>
-                                    <div style="font-size:11.5px;color:var(--t3)">linkedin.com/in/ahmed-alotaibi</div>
-                                </div>
-                            </div>
-                            <div
-                                style="font-size:11px;color:var(--gold);background:var(--goldlt);padding:3px 9px;border-radius:6px;font-weight:600">
-                                342 زيارة</div>
-                        </div>
-                        <div
-                            style="padding:12px 14px;background:#F8F5EF;border:1px solid var(--bd);border-radius:10px;display:flex;align-items:center;justify-content:space-between">
-                            <div style="display:flex;align-items:center;gap:10px">
-                                <div
-                                    style="width:32px;height:32px;border-radius:8px;background:rgba(45,122,79,0.15);display:flex;align-items:center;justify-content:center;font-size:13px">
-                                    🐦</div>
-                                <div>
-                                    <div style="font-size:13px;font-weight:700;color:var(--t1)">Twitter / X</div>
-                                    <div style="font-size:11.5px;color:var(--t3)">@ahmed_alotaibi_sa</div>
-                                </div>
-                            </div>
-                            <div
-                                style="font-size:11px;color:var(--gold);background:var(--goldlt);padding:3px 9px;border-radius:6px;font-weight:600">
-                                218 زيارة</div>
-                        </div>
-                        <div
-                            style="padding:12px 14px;background:#F8F5EF;border:1px solid var(--bd);border-radius:10px;display:flex;align-items:center;justify-content:space-between">
-                            <div style="display:flex;align-items:center;gap:10px">
-                                <div
-                                    style="width:32px;height:32px;border-radius:8px;background:rgba(44,95,158,0.15);display:flex;align-items:center;justify-content:center;font-size:13px">
-                                    💻</div>
-                                <div>
-                                    <div style="font-size:13px;font-weight:700;color:var(--t1)">GitHub</div>
-                                    <div style="font-size:11.5px;color:var(--t3)">github.com/ahmed-alotaibi</div>
-                                </div>
-                            </div>
-                            <div
-                                style="font-size:11px;color:var(--gold);background:var(--goldlt);padding:3px 9px;border-radius:6px;font-weight:600">
-                                94 زيارة</div>
-                        </div>
-                        <div
-                            style="padding:12px 14px;background:#F8F5EF;border:1px solid var(--bd2);border-radius:10px;display:flex;align-items:center;gap:10px">
-                            <div
-                                style="width:32px;height:32px;border-radius:8px;background:rgba(200,151,58,0.15);display:flex;align-items:center;justify-content:center;font-size:13px">
-                                ＋</div>
-                            <div style="font-size:13px;color:var(--gold);font-weight:600">أضف رابطاً جديداً...</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="sc-p" data-panel="2">
-                    <div class="ph-bar"><span class="pt">خريطة AR</span><span class="pb"><span
-                                class="ldot"></span>مفعّلة</span></div>
-                    <div class="profile-ar" style="margin-bottom:10px">
-                        <div class="ar-lbl">
-                            <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-                                <path d="M7 1l1.2 3.7H13l-3.4 2.5 1.3 4-4.1-2.5L2.8 11l1.3-4L.7 4.7H5.8L7 1z" stroke="#C8973A"
-                                  stroke-width="1.1" fill="none" />
-                            </svg>
-                            تجربة الواقع المعزز
-                        </div>
-                        <div class="ar-badge">
-                            <div class="ar-dot"></div>AR Web نشط
-                        </div>
-                    </div>
-                    <div class="map-preview">
-                        <div class="map-grid"></div>
-                        <div class="map-pin"></div>
-                        <div class="map-pulse"></div>
-                        <div class="map-ar-lbl">📍 مكتبي — حي العليا، الرياض</div>
-                    </div>
-                    <div style="margin-top:10px;display:grid;grid-template-columns:1fr 1fr;gap:8px">
-                        <div style="padding:10px 12px;background:#F8F5EF;border:1px solid var(--bd);border-radius:9px">
-                          <div style="font-size:10px;color:var(--t3);margin-bottom:3px">طريقة الوصول</div>
-                          <div style="font-size:13px;font-weight:700;color:var(--t1)">توجيه مباشر</div>
-                        </div>
-                        <div style="padding:10px 12px;background:#F8F5EF;border:1px solid var(--bd);border-radius:9px">
-                          <div style="font-size:10px;color:var(--t3);margin-bottom:3px">تجربة AR</div>
-                          <div style="font-size:13px;font-weight:700;color:var(--gold2)">مفعّلة ✓</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="sc-p" data-panel="3">
-                    <div class="ph-bar"><span class="pt">لوحة التحليلات</span><span class="pb"><span
-                                class="ldot"></span>لحظي</span></div>
-                    <div class="analytics-card">
-                        <div class="an-row" style="margin-bottom:10px">
-                            <div class="an-stat">
-                                <div class="an-n">247</div>
-                                <div class="an-l">مشاهدة هذا الأسبوع</div>
-                            </div>
-                            <div class="an-stat">
-                                <div class="an-n">89</div>
-                                <div class="an-l">مسح NFC</div>
-                            </div>
-                            <div class="an-stat">
-                                <div class="an-n">62</div>
-                                <div class="an-l">جهة اتصال محفوظة</div>
-                            </div>
-                        </div>
-                        <div style="font-size:10.5px;color:var(--t3);margin-bottom:6px">نشاط آخر 7 أيام</div>
-                        <div class="an-ch">
-                            <div class="an-bar" style="height:30%"></div>
-                            <div class="an-bar" style="height:50%"></div>
-                            <div class="an-bar" style="height:45%"></div>
-                            <div class="an-bar hi" style="height:80%"></div>
-                            <div class="an-bar" style="height:60%"></div>
-                            <div class="an-bar hi" style="height:100%"></div>
-                            <div class="an-bar" style="height:70%"></div>
-                        </div>
-                        <div style="margin-top:14px;display:flex;flex-direction:column;gap:7px">
-                            <div style="display:flex;justify-content:space-between;font-size:12.5px">
-                              <span style="color:var(--t2)">أعلى مصدر زيارة</span><span style="color:var(--gold2);font-weight:700">NFC
-                                مسح مباشر</span>
-                            </div>
-                            <div style="display:flex;justify-content:space-between;font-size:12.5px">
-                              <span style="color:var(--t2)">أعلى يوم</span><span
-                                style="color:var(--gold2);font-weight:700">الأربعاء</span>
-                            </div>
-                            <div style="display:flex;justify-content:space-between;font-size:12.5px">
-                              <span style="color:var(--t2)">معدل الحفظ</span><span style="color:#4ade80;font-weight:700">25.1%</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="split">
-        <div class="split-w">
-            <p class="sec-pre" style="text-align:center">اتخذ قرارك</p>
-            <h2 class="sec-h" style="text-align:center;max-width:100%">بطاقتك الورقية القديمة<br><em>أم هويتك الرقمية
-                    الدائمة؟</em></h2>
-            <div class="split-grid">
-                <div class="sc2 bad">
-                    <div class="sc2-inner">
-                        <div class="s2-ey">
-                            <div
-                              style="width:16px;height:16px;border-radius:50%;background:rgba(249,244,236,0.06);display:flex;align-items:center;justify-content:center;flex-shrink:0">
-                              <svg width="8" height="8" viewBox="0 0 8 8" fill="none">
-                                <path d="M1.5 1.5l5 5M6.5 1.5l-5 5" stroke="rgba(249,244,236,0.25)" stroke-width="1.3"
-                                  stroke-linecap="round" />
-                              </svg>
-                            </div>قبل معروف
-                        </div>
-                        <h3 class="s2-heading">تحمّل العائق المهني</h3>
-                        <div class="s2-items">
-                            <div class="s2-item">
-                              <div class="s2-ic"><svg width="8" height="8" viewBox="0 0 8 8" fill="none">
-                                  <path d="M1 1l6 6M7 1L1 7" stroke="rgba(249,244,236,0.2)" stroke-width="1.2"
-                                    stroke-linecap="round" />
-                                </svg></div>بطاقات ورقية تُفقد وتُتلف
-                            </div>
-                            <div class="s2-item">
-                              <div class="s2-ic"><svg width="8" height="8" viewBox="0 0 8 8" fill="none">
-                                  <path d="M1 1l6 6M7 1L1 7" stroke="rgba(249,244,236,0.2)" stroke-width="1.2"
-                                    stroke-linecap="round" />
-                                </svg></div>تغيير البيانات يعني طباعة جديدة وتكاليف
-                            </div>
-                            <div class="s2-item">
-                              <div class="s2-ic"><svg width="8" height="8" viewBox="0 0 8 8" fill="none">
-                                  <path d="M1 1l6 6M7 1L1 7" stroke="rgba(249,244,236,0.2)" stroke-width="1.2"
-                                    stroke-linecap="round" />
-                                </svg></div>حلول رقمية بـ 360-550 ريال/سنة
-                            </div>
-                            <div class="s2-item">
-                              <div class="s2-ic"><svg width="8" height="8" viewBox="0 0 8 8" fill="none">
-                                  <path d="M1 1l6 6M7 1L1 7" stroke="rgba(249,244,236,0.2)" stroke-width="1.2"
-                                    stroke-linecap="round" />
-                                </svg></div>واجهات معقدة وإنجليزية بحتة
-                            </div>
-                            <div class="s2-item">
-                                <div class="s2-ic"><svg width="8" height="8" viewBox="0 0 8 8" fill="none">
-                                    <path d="M1 1l6 6M7 1L1 7" stroke="rgba(249,244,236,0.2)" stroke-width="1.2"
-                                      stroke-linecap="round" />
-                                  </svg></div>لا تحليلات ولا معرفة من شاف بطاقتك
-                            </div>
-                        </div>
-                    </div>
-                    <div class="s2-bot"><svg width="13" height="13" viewBox="0 0 13 13" fill="none">
-                        <circle cx="6.5" cy="6.5" r="5.5" stroke="rgba(249,244,236,0.18)" stroke-width="1.1" />
-                        <path d="M6.5 4v3.5M6.5 9v.5" stroke="rgba(249,244,236,0.18)" stroke-width="1.2" stroke-linecap="round" />
-                      </svg>تكلفة عالية + جهد مضاعف + نتائج محدودة</div>
-                </div>
-                <div class="sc2 good">
-                    <div class="sc2-inner">
-                        <div class="s2-ey">
-                            <div
-                              style="width:16px;height:16px;border-radius:50%;background:rgba(200,151,58,0.2);display:flex;align-items:center;justify-content:center;flex-shrink:0">
-                              <svg width="8" height="8" viewBox="0 0 8 8" fill="none">
-                                <path d="M1 4l2 2 4-4" stroke="#C8973A" stroke-width="1.3" stroke-linecap="round"
-                                  stroke-linejoin="round" />
-                              </svg>
-                            </div>مع معروف ID
-                        </div>
-                        <h3 class="s2-heading">هويتك الرقمية الدائمة</h3>
-                        <div class="s2-items">
-                            <div class="s2-item">
-                                <div class="s2-ic" style="background:rgba(200,151,58,0.15)"><svg width="8" height="8" viewBox="0 0 8 8"
-                                    fill="none">
-                                    <path d="M1 4l2 2 4-4" stroke="#C8973A" stroke-width="1.3" stroke-linecap="round"
-                                      stroke-linejoin="round" />
-                                  </svg></div>بطاقة فاخرة تدوم للأبد مع تحديثات مجانية
-                            </div>
-                            <div class="s2-item">
-                                <div class="s2-ic" style="background:rgba(200,151,58,0.15)"><svg width="8" height="8" viewBox="0 0 8 8"
-                                    fill="none">
-                                    <path d="M1 4l2 2 4-4" stroke="#C8973A" stroke-width="1.3" stroke-linecap="round"
-                                      stroke-linejoin="round" />
-                                  </svg></div>99 ريال مرة واحدة للأبد — لا اشتراكات
-                            </div>
-                            <div class="s2-item">
-                                <div class="s2-ic" style="background:rgba(200,151,58,0.15)"><svg width="8" height="8" viewBox="0 0 8 8"
-                                    fill="none">
-                                    <path d="M1 4l2 2 4-4" stroke="#C8973A" stroke-width="1.3" stroke-linecap="round"
-                                      stroke-linejoin="round" />
-                                  </svg></div>واجهة عربية كاملة، دعم واتساب فوري
-                            </div>
-                            <div class="s2-item">
-                                <div class="s2-ic" style="background:rgba(200,151,58,0.15)"><svg width="8" height="8" viewBox="0 0 8 8"
-                                    fill="none">
-                                    <path d="M1 4l2 2 4-4" stroke="#C8973A" stroke-width="1.3" stroke-linecap="round"
-                                      stroke-linejoin="round" />
-                                  </svg></div>خريطة AR + تحليلات + روابط غير محدودة
-                            </div>
-                            <div class="s2-item">
-                                <div class="s2-ic" style="background:rgba(200,151,58,0.15)"><svg width="8" height="8" viewBox="0 0 8 8"
-                                    fill="none">
-                                    <path d="M1 4l2 2 4-4" stroke="#C8973A" stroke-width="1.3" stroke-linecap="round"
-                                      stroke-linejoin="round" />
-                                  </svg></div>دفع بمدى وSTC Pay، شحن 3-5 أيام
-                            </div>
-                        </div>
-                    </div>
-                    <div class="s2-bot-g">
-                        <div style="font-size:12.5px;color:rgba(200,151,58,0.6);font-weight:500">بدون بطاقة ائتمانية · جاهز
-                            خلال دقائق</div>
-                        <a href="{{ route('register') }}"
-                            style="display:inline-flex;align-items:center;gap:7px;padding:9px 18px;border-radius:8px;background:var(--gold);color:var(--dark);font-size:13.5px;font-weight:800">احصل
-                            على بطاقتك</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="cmp">
-        <div class="cmp-w">
-            <p class="sec-pre" style="text-align:center">مقارنة</p>
-            <h2 class="sec-h" style="text-align:center;max-width:100%">لماذا تختار معروف ID؟</h2>
-            <div class="cmp-tbl">
-                <div class="cmp-hdr">
-                    <div></div>
-                    <div class="cmp-col">Popl</div>
-                    <div class="cmp-col">Blinq</div>
-                    <div class="cmp-col hi">
-                        <div class="cmp-badge">الأفضل</div>معروف ID
-                    </div>
-                </div>
-                <div class="cmp-row">
-                    <div class="cmp-feat">السعر</div>
-                    <div class="cmp-val no">450 ريال/سنة</div>
-                    <div class="cmp-val no">270 ريال/سنة</div>
-                    <div class="cmp-val yes"><strong>99 ريال فقط</strong></div>
-                </div>
-                <div class="cmp-row">
-                    <div class="cmp-feat">اشتراك شهري</div>
-                    <div class="cmp-val no">✗</div>
-                    <div class="cmp-val no">✗</div>
-                    <div class="cmp-val yes"><svg width="15" height="15" viewBox="0 0 15 15" fill="none">
-                        <path d="M3 7.5l3 3L12 4" stroke="#2D7A4F" stroke-width="2" stroke-linecap="round"
-                          stroke-linejoin="round" />
-                      </svg></div>
-                </div>
-                <div class="cmp-row">
-                    <div class="cmp-feat">دعم عربي</div>
-                    <div class="cmp-val no">✗</div>
-                    <div class="cmp-val no">✗</div>
-                    <div class="cmp-val yes"><svg width="15" height="15" viewBox="0 0 15 15" fill="none">
-                        <path d="M3 7.5l3 3L12 4" stroke="#2D7A4F" stroke-width="2" stroke-linecap="round"
-                          stroke-linejoin="round" />
-                      </svg></div>
-                </div>
-                <div class="cmp-row">
-                    <div class="cmp-feat">دفع بمدى / STC Pay</div>
-                    <div class="cmp-val no">✗</div>
-                    <div class="cmp-val no">✗</div>
-                    <div class="cmp-val yes"><svg width="15" height="15" viewBox="0 0 15 15" fill="none">
-                        <path d="M3 7.5l3 3L12 4" stroke="#2D7A4F" stroke-width="2" stroke-linecap="round"
-                          stroke-linejoin="round" />
-                      </svg></div>
-                </div>
-                <div class="cmp-row">
-                    <div class="cmp-feat">خريطة AR</div>
-                    <div class="cmp-val no">✗</div>
-                    <div class="cmp-val no">✗</div>
-                    <div class="cmp-val yes"><svg width="15" height="15" viewBox="0 0 15 15" fill="none">
-                        <path d="M3 7.5l3 3L12 4" stroke="#2D7A4F" stroke-width="2" stroke-linecap="round"
-                          stroke-linejoin="round" />
-                      </svg></div>
-                </div>
-                <div class="cmp-row">
-                    <div class="cmp-feat">شحن سريع (3-5 أيام)</div>
-                    <div class="cmp-val p">7-14 يوم</div>
-                    <div class="cmp-val p">7-14 يوم</div>
-                    <div class="cmp-val yes"><svg width="15" height="15" viewBox="0 0 15 15" fill="none">
-                        <path d="M3 7.5l3 3L12 4" stroke="#2D7A4F" stroke-width="2" stroke-linecap="round"
-                          stroke-linejoin="round" />
-                      </svg></div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="test">
-        <div class="test-w">
-            <p class="sec-pre" style="text-align:center">آراء العملاء</p>
-            <h2 class="sec-h" style="text-align:center;max-width:100%">محترفون يثقون بمعروف</h2>
-            <div class="msnry">
-                <div class="msnry-item">
-                    <div class="tcard feat">
-                        <div class="tc-stars">★★★★★</div>
-                        <p class="tc-quote">"أفضل استثمار في مسيرتي المهنية. الكل في اجتماعات العمل يسألني عن البطاقة،
-                            وأتباهى بإنها سعودية وبسعر معقول جداً."</p>
-                        <div class="tc-sep"></div>
-                        <div style="text-align:center;margin-bottom:16px">
-                            <div
-                              style="font-family:var(--fb);font-size:52px;font-weight:900;color:var(--gold2);letter-spacing:-3px;line-height:1">
-                              99<span style="font-size:22px;color:var(--t3)"> ريال</span></div>
-                            <div style="font-size:12px;color:var(--t3);margin-top:2px">مرة واحدة للأبد</div>
-                        </div>
-                        <div class="tc-auth">
-                            <div class="tc-av" style="background:var(--gold)">أ</div>
-                            <div>
-                                <div class="tc-nm">أحمد القحطاني</div>
-                                <div class="tc-ro" style="color:rgba(200,151,58,0.5)">مدير تقنية، شركة مدى</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="msnry-item">
-                    <div class="tcard accent">
-                        <div class="tc-stat">60<span style="font-size:26px;color:var(--t2)">%</span></div>
-                        <div class="tc-stat-lbl">المزيد من طلبات التواصل بعد استخدامي معروف في المؤتمرات والفعاليات.</div>
-                        <div class="tc-auth">
-                            <div class="tc-av" style="background:#2C5F9E">س</div>
-                            <div>
-                                <div class="tc-nm">سارة الزهراني</div>
-                                <div class="tc-ro" style="color:var(--t3)">مستشارة تسويق، الرياض</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="msnry-item">
-                    <div class="tcard">
-                        <div class="tc-stars">★★★★★</div>
-                        <p class="tc-quote">"جربت Popl وBlinq وكلهم غاليين ومعقدين. معروف الأسهل والأوفر والدعم باللغة العربية
-                            ممتاز."</p>
-                        <div class="tc-auth">
-                            <div class="tc-av" style="background:#2D7A4F">م</div>
-                            <div>
-                                <div class="tc-nm">محمد الشمري</div>
-                                <div class="tc-ro">مطور برمجيات مستقل</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="msnry-item">
-                    <div class="tcard">
-                        <div class="tc-stars">★★★★★</div>
-                        <p class="tc-quote">"خاصية الخريطة AR صدمتني! عملائي ما يضيعون لإيجاد عيادتي. تجربة فريدة ومميزة جداً."</p>
-                        <div class="tc-auth">
-                            <div class="tc-av" style="background:#9E2C2C">ف</div>
-                            <div>
-                                <div class="tc-nm">د. فهد الدوسري</div>
-                                <div class="tc-ro">طبيب أسنان، جدة</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="msnry-item">
-                    <div class="tcard accent">
-                        <div class="tc-stat">247<span style="font-size:22px;color:var(--t2)"></span></div>
-                        <div class="tc-stat-lbl">مشاهدة في أسبوع واحد فقط — كلها من مسح NFC وQR في فعالية واحدة.</div>
-                        <div class="tc-auth">
-                            <div class="tc-av" style="background:#8B4513">ع</div>
-                            <div>
-                                <div class="tc-nm">عبدالله العنزي</div>
-                                <div class="tc-ro" style="color:var(--t3)">رائد أعمال، الدمام</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="msnry-item">
-                    <div class="tcard">
-                        <div class="tc-stars">★★★★★</div>
-                        <p class="tc-quote">"بدأت كموزعة وربحت 2,100 ريال الشهر الأول. المنتج يبيع نفسه، والناس تنبهر من التقنية."
-                        </p>
-                        <div class="tc-auth">
-                            <div class="tc-av" style="background:var(--gold2)">ر</div>
-                            <div>
-                                <div class="tc-nm">ريم المالكي</div>
-                                <div class="tc-ro">موزعة معتمدة، الرياض</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="pricing">
-        <div class="price-w">
-            <p class="sec-pre" style="text-align:center">الأسعار</p>
-            <h2 class="sec-h" style="text-align:center;max-width:100%">سعر واحد.<br><em>للأبد.</em></h2>
-            <p
-                style="font-size:16px;color:var(--t2);line-height:1.7;text-align:center;margin-bottom:0;max-width:480px;margin-left:auto;margin-right:auto">
-                لا تحتاج تقارن باقات أو تحسب اشتراكات. سعر واحد شامل كل شيء، إلى الأبد.</p>
-            <div class="price-main">
-                <div style="text-align:center;position:relative;z-index:1">
-                    <div style="display:inline-flex;align-items:baseline;gap:4px">
-                        <span class="price-unit">ر.س</span>
-                        <span class="price-big">99</span>
-                    </div>
-                    <div class="price-once">دفعة واحدة · بدون اشتراكات</div>
-                    <div style="display:flex;justify-content:center;margin-top:14px">
-                        <div class="price-compare">
-                          <del style="color:var(--t4)">المنافسون: 360-550 ريال/سنة</del>
-                          <span
-                            style="background:rgba(45,122,79,0.2);color:#4ade80;font-size:11px;font-weight:700;padding:2px 8px;border-radius:100px">وفّر
-                            80%+</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="price-feats">
-                    <div class="pf">
-                        <div class="pf-ico"><svg width="15" height="15" viewBox="0 0 15 15" fill="none">
-                            <rect x="2" y="4" width="11" height="9" rx="1.5" stroke="#C8973A" stroke-width="1.3" />
-                            <path d="M5 4V3a2.5 2.5 0 015 0v1" stroke="#C8973A" stroke-width="1.3" />
-                            <circle cx="7.5" cy="8.5" r="1.5" fill="#C8973A" />
-                          </svg></div>
-                        <div>
-                            <div class="pf-t">بطاقة NFC فاخرة</div>
-                            <div class="pf-s">PVC عالي الجودة + chip NTAG215</div>
-                        </div>
-                    </div>
-                    <div class="pf">
-                        <div class="pf-ico"><svg width="15" height="15" viewBox="0 0 15 15" fill="none">
-                            <rect x="1.5" y="1.5" width="12" height="12" rx="2" stroke="#C8973A" stroke-width="1.3" />
-                            <path d="M4 7.5h7M4 5h5M4 10h4" stroke="#C8973A" stroke-width="1.2" stroke-linecap="round" />
-                          </svg></div>
-                        <div>
-                            <div class="pf-t">صفحة رقمية احترافية</div>
-                            <div class="pf-s">maroof-id.com/اسمك</div>
-                        </div>
-                    </div>
-                    <div class="pf">
-                        <div class="pf-ico"><svg width="15" height="15" viewBox="0 0 15 15" fill="none">
-                            <circle cx="7.5" cy="6.5" r="3" stroke="#C8973A" stroke-width="1.3" />
-                            <path d="M7.5 9.5v4M5.5 13.5h4" stroke="#C8973A" stroke-width="1.3" stroke-linecap="round" />
-                          </svg></div>
-                        <div>
-                            <div class="pf-t">خريطة AR مدمجة</div>
-                            <div class="pf-s">واقع معزز + توجيه مباشر</div>
-                        </div>
-                    </div>
-                    <div class="pf">
-                        <div class="pf-ico"><svg width="15" height="15" viewBox="0 0 15 15" fill="none">
-                            <path d="M2 11l3-6 3 6M9 7l2 4 2-4" stroke="#C8973A" stroke-width="1.3" stroke-linecap="round"
-                              stroke-linejoin="round" />
-                          </svg></div>
-                        <div>
-                            <div class="pf-t">تحليلات ذكية</div>
-                            <div class="pf-s">من شاف، من مسح، من حفظ</div>
-                        </div>
-                    </div>
-                    <div class="pf">
-                        <div class="pf-ico"><svg width="15" height="15" viewBox="0 0 15 15" fill="none">
-                            <path d="M7.5 1v13M1 7.5h13" stroke="#C8973A" stroke-width="1.3" stroke-linecap="round" opacity=".4" />
-                            <rect x="4" y="4" width="7" height="7" rx="1.5" stroke="#C8973A" stroke-width="1.3" />
-                          </svg></div>
-                        <div>
-                            <div class="pf-t">35+ قالب احترافي</div>
-                            <div class="pf-s">لكل مجال ومسمى وظيفي</div>
-                        </div>
-                    </div>
-                    <div class="pf">
-                        <div class="pf-ico"><svg width="15" height="15" viewBox="0 0 15 15" fill="none">
-                            <circle cx="7.5" cy="7.5" r="5.5" stroke="#C8973A" stroke-width="1.3" />
-                            <path d="M5 7.5l2 2 3-3" stroke="#C8973A" stroke-width="1.3" stroke-linecap="round"
-                              stroke-linejoin="round" />
-                          </svg></div>
-                        <div>
-                            <div class="pf-t">تحديثات مجانية للأبد</div>
-                            <div class="pf-s">عدّل متى ما بغيت</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="price-cta">
-                    <a href="{{ route('register') }}" class="btn-gold" style="font-size:16px;padding:14px 32px">احصل على
-                        بطاقتك الآن</a>
-                    <a href="{{ route('templates.index') }}" class="btn-ghost">شاهد نموذج حي</a>
-                </div>
-                <div style="text-align:center;margin-top:14px;font-size:12.5px;color:var(--t4)">شحن مجاني · دفع بمدى وSTC Pay ·
-                    ضمان استرداد 7 أيام</div>
-            </div>
-        </div>
-    </section>
-
-    <section class="reseller">
-        <div class="res-w">
-          <div>
-            <p class="sec-pre">برنامج الموزعين</p>
-            <h2 class="sec-h">اكسب من بيت<em>كـ</em></h2>
-            <p class="sec-sub" style="margin-bottom:28px">اشترِ بطاقات فارغة بالجملة، برمجها للعملاء بتطبيقنا، وارتح بربح 69
-              ريال لكل بطاقة. لا محل ولا رأس مال كبير.</p>
-            <div class="levels">
-              <div class="lv">
-                <div>
-                  <div class="lv-name">مبتدئ</div>
-                  <div class="lv-range">0-99 بطاقة</div>
-                </div>
-                <div class="lv-earn">69 ريال/بطاقة</div>
-              </div>
-              <div class="lv">
-                <div>
-                  <div class="lv-name">نشط</div>
-                  <div class="lv-range">100-499 بطاقة</div>
-                </div>
-                <div class="lv-earn">72 ريال/بطاقة</div>
-              </div>
-              <div class="lv">
-                <div>
-                  <div class="lv-name">ممتاز</div>
-                  <div class="lv-range">500+ بطاقة</div>
-                </div>
-                <div class="lv-earn">75+ ريال/بطاقة</div>
-              </div>
-            </div>
-            <a href="{{ route('register') }}" class="btn-gold" style="margin-top:24px;display:inline-flex">انضم كموزع ← ابدأ بـ 875 ريال</a>
-          </div>
-          <div class="profit-calc">
-            <h3 style="font-size:16px;font-weight:700;color:var(--t1);margin-bottom:18px;position:relative;z-index:1">🧮
-              حاسبة الأرباح الشهرية</h3>
-            <div class="calc-row"><span class="calc-lbl">البطاقات المباعة</span><span class="calc-val">25 بطاقة</span></div>
-            <div class="calc-row"><span class="calc-lbl">سعر البيع</span><span class="calc-val">99 ريال/بطاقة</span></div>
-            <div class="calc-row"><span class="calc-lbl">تكلفة البطاقة (جملة)</span><span class="calc-val">- 30
-                ريال/بطاقة</span></div>
-            <div class="calc-row"><span class="calc-lbl">ربحك الصافي</span><span class="calc-val profit">1,725 ريال</span>
-            </div>
-            <div class="calc-progress">
-              <div class="cp-row"><span>الشهر 1</span><span>1,725 ريال</span></div>
-              <div class="cp-bar">
-                <div class="cp-fill" style="width:35%" id="cpf1"></div>
-              </div>
-              <div style="margin-top:8px"></div>
-              <div class="cp-row"><span>الشهر 3</span><span>2,415 ريال</span></div>
-              <div class="cp-bar">
-                <div class="cp-fill" style="width:55%" id="cpf2"></div>
-              </div>
-              <div style="margin-top:8px"></div>
-              <div class="cp-row"><span>الشهر 6</span><span>3,450+ ريال</span></div>
-              <div class="cp-bar">
-                <div class="cp-fill" style="width:80%" id="cpf3"></div>
-              </div>
-            </div>
-          </div>
-        </div>
-    </section>
-
-    <section class="orbit">
-        <div class="orbit-w">
-            <div>
-                <p class="sec-pre">ما تحتويه صفحتك</p>
-                <h2 class="sec-h">هويتك كاملة<br><em>في رابط واحد</em></h2>
-                <p class="sec-sub" style="margin-bottom:22px">كل ما يحتاج يعرفه من يريد التواصل معك، في مكان واحد أنيق ومنظم
-                    — من معلوماتك الشخصية إلى خريطتك ومواقع تواصلك.</p>
-                <div class="int-chips">
-                    <div class="ic">📱 LinkedIn</div>
-                    <div class="ic">🐦 Twitter</div>
-                    <div class="ic">📸 Instagram</div>
-                    <div class="ic">💻 GitHub</div>
-                    <div class="ic">▶️ YouTube</div>
-                    <div class="ic">💬 واتساب</div>
-                    <div class="ic">🔗 موقعك</div>
-                    <div class="ic">📍 خريطة AR</div>
-                    <div class="ic">📊 Portfolio</div>
-                    <div class="ic">+ أضف ما تريد</div>
-                </div>
-                <div class="stats" style="margin-top:28px">
-                    <div class="st">
-                      <div class="st-n">35<span>+</span></div>
-                      <div class="st-l">قالب احترافي</div>
-                    </div>
-                    <div class="st">
-                      <div class="st-n">99<span>٪</span></div>
-                      <div class="st-l">رضا العملاء</div>
-                    </div>
-                    <div class="st">
-                      <div class="st-n">3-5<span>أ</span></div>
-                      <div class="st-l">وقت التوصيل</div>
-                    </div>
-                </div>
-            </div>
-            <div>
-                <svg viewBox="0 0 480 420" fill="none" style="width:100%;max-width:460px;display:block;margin:0 auto">
-                  <defs>
-                    <radialGradient id="hubG" cx="50%" cy="50%" r="50%">
-                      <stop offset="0%" stop-color="#C8973A" />
-                      <stop offset="100%" stop-color="#8B5E1A" />
-                    </radialGradient>
-                    <filter id="glow">
-                      <feGaussianBlur stdDeviation="5" result="b" />
-                      <feMerge>
-                        <feMergeNode in="b" />
-                        <feMergeNode in="SourceGraphic" />
-                      </feMerge>
-                    </filter>
-                  </defs>
-                  <circle cx="240" cy="210" r="100" stroke="rgba(200,151,58,0.18)" stroke-width="1.5" fill="none"
-                    stroke-dasharray="6 5">
-                    <animateTransform attributeName="transform" type="rotate" from="0 240 210" to="360 240 210" dur="30s"
-                      repeatCount="indefinite" />
-                  </circle>
-                  <circle cx="240" cy="210" r="155" stroke="rgba(200,151,58,0.09)" stroke-width="1" fill="none">
-                    <animateTransform attributeName="transform" type="rotate" from="360 240 210" to="0 240 210" dur="50s"
-                      repeatCount="indefinite" />
-                  </circle>
-                  <line x1="240" y1="210" x2="240" y2="90" stroke="rgba(200,151,58,0.4)" stroke-width="1.5"
-                    stroke-dasharray="5 4">
-                    <animate attributeName="stroke-dashoffset" from="0" to="-36" dur="1.6s" repeatCount="indefinite" />
-                  </line>
-                  <line x1="240" y1="210" x2="356" y2="278" stroke="rgba(45,122,79,0.38)" stroke-width="1.5"
-                    stroke-dasharray="5 4">
-                    <animate attributeName="stroke-dashoffset" from="0" to="-36" dur="2s" repeatCount="indefinite" />
-                  </line>
-                  <line x1="240" y1="210" x2="124" y2="278" stroke="rgba(44,95,158,0.38)" stroke-width="1.5"
-                    stroke-dasharray="5 4">
-                    <animate attributeName="stroke-dashoffset" from="0" to="-36" dur="1.8s" repeatCount="indefinite" />
-                  </line>
-                  <line x1="240" y1="210" x2="356" y2="142" stroke="rgba(200,151,58,0.32)" stroke-width="1.5"
-                    stroke-dasharray="5 4">
-                    <animate attributeName="stroke-dashoffset" from="0" to="-36" dur="1.5s" repeatCount="indefinite" />
-                  </line>
-                  <line x1="240" y1="210" x2="124" y2="142" stroke="rgba(200,151,58,0.32)" stroke-width="1.5"
-                    stroke-dasharray="5 4">
-                    <animate attributeName="stroke-dashoffset" from="0" to="-36" dur="2.2s" repeatCount="indefinite" />
-                  </line>
-                  <line x1="240" y1="210" x2="240" y2="330" stroke="rgba(158,44,44,0.32)" stroke-width="1.5"
-                    stroke-dasharray="5 4">
-                    <animate attributeName="stroke-dashoffset" from="0" to="-36" dur="1.3s" repeatCount="indefinite" />
-                  </line>
-                  <circle cx="240" cy="210" r="46" fill="url(#hubG)" filter="url(#glow)" />
-                  <circle cx="240" cy="210" r="46" stroke="rgba(255,255,255,0.2)" stroke-width="1.5" fill="none" />
-                  <text x="240" y="205" text-anchor="middle" font-size="13" font-weight="900" fill="white"
-                    font-family="Cairo,sans-serif">معروف</text>
-                  <text x="240" y="222" text-anchor="middle" font-size="9" fill="rgba(255,255,255,0.6)"
-                    font-family="Cairo,sans-serif">.ID</text>
-                  <g>
-                    <rect x="215" y="64" width="50" height="50" rx="12" fill="#0D0C09" stroke="rgba(200,151,58,0.4)"
-                      stroke-width="1.5" /><text x="240" y="96" text-anchor="middle" font-size="11" fill="rgba(200,151,58,0.8)"
-                      font-family="Cairo,sans-serif">NFC</text><text x="240" y="124" text-anchor="middle" font-size="10"
-                      fill="rgba(249,244,236,0.35)" font-family="Cairo,sans-serif">بطاقة ذكية</text>
-                  </g>
-                  <g>
-                    <rect x="330" y="252" width="50" height="50" rx="12" fill="#0D0C09" stroke="rgba(45,122,79,0.4)"
-                      stroke-width="1.5" /><text x="355" y="283" text-anchor="middle" font-size="10" fill="rgba(45,122,79,0.9)"
-                      font-family="Cairo,sans-serif">صفحة</text><text x="355" y="313" text-anchor="middle" font-size="10"
-                      fill="rgba(249,244,236,0.35)" font-family="Cairo,sans-serif">رقمية</text>
-                  </g>
-                  <g>
-                    <rect x="100" y="252" width="50" height="50" rx="12" fill="#0D0C09" stroke="rgba(44,95,158,0.4)"
-                      stroke-width="1.5" /><text x="125" y="283" text-anchor="middle" font-size="10" fill="rgba(44,95,158,0.9)"
-                      font-family="Cairo,sans-serif">خريطة</text><text x="125" y="313" text-anchor="middle" font-size="10"
-                      fill="rgba(249,244,236,0.35)" font-family="Cairo,sans-serif">AR</text>
-                  </g>
-                  <g>
-                    <rect x="330" y="116" width="50" height="50" rx="12" fill="#0D0C09" stroke="rgba(200,151,58,0.4)"
-                      stroke-width="1.5" /><text x="355" y="148" text-anchor="middle" font-size="10" fill="rgba(200,151,58,0.9)"
-                      font-family="Cairo,sans-serif">روابط</text><text x="355" y="178" text-anchor="middle" font-size="10"
-                      fill="rgba(249,244,236,0.35)" font-family="Cairo,sans-serif">تواصل</text>
-                  </g>
-                  <g>
-                    <rect x="100" y="116" width="50" height="50" rx="12" fill="#0D0C09" stroke="rgba(200,151,58,0.35)"
-                      stroke-width="1.5" /><text x="125" y="148" text-anchor="middle" font-size="10" fill="rgba(200,151,58,0.9)"
-                      font-family="Cairo,sans-serif">تحليل</text><text x="125" y="178" text-anchor="middle" font-size="10"
-                      fill="rgba(249,244,236,0.35)" font-family="Cairo,sans-serif">ذكي</text>
-                  </g>
-                  <g>
-                    <rect x="215" y="304" width="50" height="50" rx="12" fill="#0D0C09" stroke="rgba(158,44,44,0.4)"
-                      stroke-width="1.5" /><text x="240" y="335" text-anchor="middle" font-size="10" fill="rgba(158,44,44,0.9)"
-                      font-family="Cairo,sans-serif">قوالب</text><text x="240" y="365" text-anchor="middle" font-size="10"
-                      fill="rgba(249,244,236,0.35)" font-family="Cairo,sans-serif">35+</text>
-                  </g>
-                  <circle r="4.5" fill="rgba(200,151,58,0.8)">
-                    <animateMotion dur="2.4s" repeatCount="indefinite" path="M240,91 L240,164" />
-                    <animate attributeName="opacity" values="0;0.8;0" dur="2.4s" repeatCount="indefinite" />
-                  </circle>
-                  <circle r="4" fill="rgba(45,122,79,0.8)">
-                    <animateMotion dur="3s" repeatCount="indefinite" begin="0.8s" path="M356,143 L295,185" />
-                    <animate attributeName="opacity" values="0;0.8;0" dur="3s" begin="0.8s" repeatCount="indefinite" />
-                  </circle>
-                  <circle r="4" fill="rgba(44,95,158,0.8)">
-                    <animateMotion dur="2.8s" repeatCount="indefinite" begin="1.5s" path="M124,278 L180,237" />
-                    <animate attributeName="opacity" values="0;0.8;0" dur="2.8s" begin="1.5s" repeatCount="indefinite" />
-                  </circle>
-                </svg>
-            </div>
-        </div>
-    </section>
-
-    <section class="cl">
-        <div class="cl-w">
-          <div class="cl-l">
-            <p class="sec-pre">آخر التحديثات</p>
-            <h2 class="sec-h">نطوّر<br><em>باستمرار</em></h2>
-            <p class="sec-sub" style="margin-bottom:16px">ميزات جديدة كل شهر، بناءً على ما يطلبه عملاؤنا فعلاً.</p>
-            <a href="#" class="btn-ghost">عرض الكل</a>
-          </div>
-          <div class="cl-feed">
-            <div class="cl-item">
-              <div class="cl-meta"><span class="cl-tag gold">جديد</span><span class="cl-date">يناير 2025</span></div>
-              <h4 class="cl-title">خريطة AR Web — الواقع المعزز في صفحتك</h4>
-              <p class="cl-body">أضف موقع مكتبك وشاهد عملاءك يجدون طريقهم إليك عبر تجربة واقع معزز مذهلة مباشرة من المتصفح —
-                بدون تطبيق.</p>
-            </div>
-            <div class="cl-item">
-              <div class="cl-meta"><span class="cl-tag green">تحسين</span><span class="cl-date">ديسمبر 2024</span></div>
-              <h4 class="cl-title">تحليلات محسّنة مع تفاصيل جهات الاتصال</h4>
-              <p class="cl-body">اعرف الآن اسم وجهة الاتصال التي حفظت بياناتك عبر الموقع — مع تفاصيل التوقيت والمصدر
-                والجهاز.</p>
-            </div>
-            <div class="cl-item">
-              <div class="cl-meta"><span class="cl-tag blue">تكامل</span><span class="cl-date">نوفمبر 2024</span></div>
-              <h4 class="cl-title">قوالب جديدة — الطب، العقارات، صناع المحتوى</h4>
-              <p class="cl-body">أضفنا 12 قالباً جديداً مصمماً لأطباء، وكلاء عقار، ومؤثرين رقميين — مع دعم كامل للـ RTL
-                العربي.</p>
-            </div>
-            <div class="cl-item">
-              <div class="cl-meta"><span class="cl-tag gold">جديد</span><span class="cl-date">أكتوبر 2024</span></div>
-              <h4 class="cl-title">تطبيق NFC Writer للموزعين — برمجة في 30 ثانية</h4>
-              <p class="cl-body">تطبيق خاص للموزعين يتيح برمجة بطاقات العملاء مباشرة من الجوال خلال 30 ثانية، مع تتبع
-                المبيعات وإدارة المخزون.</p>
-            </div>
-          </div>
-        </div>
-    </section>
-
-    <section class="cta">
-        <div class="cta-w">
-            <p class="sec-pre" style="color:rgba(200,151,58,0.5)">ابدأ اليوم</p>
-            <h2 class="cta-h">هويتك المهنية،<br><span class="gold">مرة واحدة للأبد</span></h2>
-            <p class="cta-sub">انضم لأكثر من 5,200 محترف سعودي اختاروا معروف ID. بطاقتك في يدك خلال 3-5 أيام.</p>
-            <div class="cta-btns">
-                <a href="{{ route('register') }}" class="btn-gold" style="font-size:16px;padding:15px 36px">احصل على بطاقتك
-                    — 99 ريال فقط</a>
-                <a href="{{ route('templates.index') }}" class="btn-ghost" style="color:var(--t1);border-color:rgba(200,151,58,0.3)">جرّب النموذج أولاً</a>
-            </div>
-            <p class="cta-note">شحن مجاني · دفع بمدى وSTC Pay · ضمان استرداد 7 أيام · دعم واتساب مباشر</p>
-        </div>
-    </section>
-@endsection
