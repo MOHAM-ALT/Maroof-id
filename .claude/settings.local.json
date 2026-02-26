@@ -1,0 +1,34 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(ai-workspace/decisions/designer-journey.md:*)",
+      "Bash(ai-workspace/decisions/partner-journey.md:*)",
+      "Bash(php artisan make:filament-widget:*)",
+      "Bash(app/Filament/Widgets/OrdersChartWidget.php:*)",
+      "Bash(php artisan optimize:clear:*)",
+      "Bash(php artisan make:filament-page:*)",
+      "Bash(php artisan:*)",
+      "Bash(ls:*)",
+      "Bash(npm run build:*)",
+      "Bash(composer validate:*)",
+      "Bash(php -l:*)",
+      "Bash(grep:*)",
+      "Bash(php -r:*)",
+      "Bash(find:*)",
+      "Bash(curl:*)",
+      "Bash(php test_resources.php:*)",
+      "Bash(for f in app/Filament/Resources/CardResource.php app/Filament/Resources/OrderResource.php app/Filament/Resources/CouponResource.php app/Filament/Resources/TemplateResource.php app/Filament/Resources/PartnerResource.php app/Filament/Resources/ResellerResource.php app/Filament/Resources/DesignerResource.php app/Filament/Resources/AffiliateResource.php app/Filament/Resources/PayoutResource.php app/Filament/Resources/RoleResource.php)",
+      "Bash(do sed -i 's/protected static ?string \\\\$navigationIcon/protected static string|\\\\\\\\BackedEnum|null \\\\$navigationIcon/' \"$f\")",
+      "Bash(echo:*)",
+      "Bash(done)",
+      "Bash(do sed -i \"s|protected static ?string $navigationIcon|protected static string\\\\|\\\\\\\\BackedEnum\\\\|null $navigationIcon|\" \"$f\")",
+      "Bash(do sed -i \"s|string|BackedEnum|null|string|\\\\\\\\BackedEnum|null|\" \"$f\")",
+      "Bash(do sed -i 's#string|BackedEnum|null#string|\\\\\\\\BackedEnum|null#' \"$f\")",
+      "Bash(python3:*)",
+      "Bash(perl -pi -e:*)",
+      "Bash(composer show:*)",
+      "Bash(composer require:*)",
+      "Bash(__NEW_LINE_cdc58cb3677b3fb1__ echo \"\")"
+    ]
+  }
+}
