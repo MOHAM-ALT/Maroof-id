@@ -120,7 +120,7 @@ ai-workspace/
 ## 🔄 سير العمل الصحيح
 
 ```
-اقرأ context/ ← افحص tasks/active/ ← افحص reports/issues/ 
+اقرأ context/ ← افحص tasks/active/ ← افحص reports/issues/
 ← نفّذ المهمة ← وثّق في reports/ ← حرّك المهمة إلى progress/
 ```
 

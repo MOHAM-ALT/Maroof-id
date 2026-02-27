@@ -17,7 +17,7 @@
             <li><a href="{{ route('home') }}#features" class="nl">المميزات</a></li>
             <li><a href="{{ route('templates.index') }}" class="nl">القوالب</a></li>
             <li><a href="{{ route('pricing') }}" class="nl">الأسعار</a></li>
-            <li><a href="{{ route('home') }}" class="nl">الموزعون</a></li>
+            <li><a href="{{ route('home') }}#reseller" class="nl">الموزعون</a></li>
             <li><a href="{{ route('contact') }}" class="nl">اتصل بنا</a></li>
         </ul>
         <div class="nav-r">
